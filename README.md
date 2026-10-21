@@ -54,17 +54,24 @@ Use `-o FOLDER` to choose the output location.
 | Transitions                       | Cross Dissolve + audio cross fade         |
 | Clip volume / pan                 | Clip volume / pan                         |
 | Clip opacity                      | Opacity                                   |
+| Speed changes, reversed clips     | Retime (constant speed) / reverse         |
 | Hidden / locked tracks            | Disabled / locked tracks                  |
+| Titles                            | Timeline marker with the text, font, colour |
+| Effects, position/zoom/rotation, crop, keyframes | Timeline marker listing the settings |
 
-Not converted yet: titles, effects, colour, keyframes, speed changes, reversed
-clips, position/scale/crop, markers and multicam. The tool lists every such
-item it finds under **"Not carried over / check in Resolve"**, so you know what
-to rebuild.
+Anything that can't be converted directly is left as a **timeline marker**
+over the clip, such as "Rebuild: clip.mp4 — Zoom 1.485; Rotation 7.3°; Effect:
+Gaussian blur...". Use it as a to-do list in Resolve. The tool also prints
+the same list when it runs.
 
 Every LumaFusion transition style (Zoom Blur, Push, etc.) becomes a cross
 dissolve of the same length. LumaFusion stores a transition as its own
 slot between two clips. The tool turns it into a transition centred on the cut,
 with each clip lending half the duration from its handles.
+
+LumaFusion plays a reversed clip from a reversed copy of the media, and that
+copy isn't included in the package. The tool maps the clip back onto the
+original file and lets Resolve reverse it.
 
 ## Limitations
 

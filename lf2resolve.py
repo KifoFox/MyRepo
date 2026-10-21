@@ -32,26 +32,14 @@ __version__ = "0.1.0"
 
 # LumaFusion asset / stream codes observed in project files.
 ASSET_TRANSITION = 3
+ASSET_TITLE = 4
 STREAM_VIDEO = 0
 STREAM_AUDIO = 1
+STREAM_TITLE = 3
 TRACK_AUDIO_ONLY = 1
 
 IMAGE_EXTS = {".jpg", ".jpeg", ".png", ".heic", ".heif", ".tif", ".tiff", ".bmp", ".gif", ".webp"}
 AUDIO_EXTS = {".m4a", ".mp3", ".wav", ".aif", ".aiff", ".caf", ".aac", ".flac"}
-
-# Clip attributes that hold a single value; anything not at this default is a
-# look we can't carry over, so we warn about it.
-VIDEO_DEFAULTS = {
-    "videoRotation": 0.0,
-    "videoTransformRotation": 0.0,
-    "videoOrientation": 0.0,
-    "videoFlipH": False,
-    "videoFlipV": False,
-    "videoCropCorner": 0.0,
-    "videoCropSoftness": 0.0,
-    "videoCropInverted": False,
-    "videoBlendMode": 0,
-}
 
 
 def cmtime(t):
@@ -75,6 +63,15 @@ def has_keyframes(stream, name):
 
 def db(gain):
     return -math.inf if gain <= 0 else 20 * math.log10(gain)
+
+
+def color_hex(rgba):
+    """'1.0 1.0 0.0 1.0' -> '#FFFF00'."""
+    try:
+        r, g, b = (float(x) for x in str(rgba).split()[:3])
+    except ValueError:
+        return str(rgba)
+    return "#" + "".join(f"{round(max(0, min(1, c)) * 255):02X}" for c in (r, g, b))
 
 
 def fmt_time(sec):
@@ -188,10 +185,35 @@ class Item:
     pan: float = 0.0
     opacity: float = 1.0
     enabled: bool = True
+    speed: Fraction = Fraction(1)
+    reversed: bool = False
+    notes: list = field(default_factory=list)  # things to rebuild by hand
+
+    def src_len(self, timeline_len):
+        return timeline_len * self.speed
 
     @property
     def src_out(self):
-        return self.src_in + (self.end - self.start)
+        return self.src_in + self.src_len(self.end - self.start)
+
+    def file_range(self):
+        """Source (in, out) in the original media file's own timeline.
+
+        LumaFusion plays reversed clips from a pre-rendered reversed copy and
+        measures sourceStart in that copy, so mirror it back onto the original.
+        """
+        if self.reversed and self.media.duration is not None:
+            d = self.media.duration
+            return d - self.src_out, d - self.src_in
+        return self.src_in, self.src_out
+
+
+@dataclass
+class Marker:
+    start: Fraction
+    end: Fraction
+    name: str
+    comment: str = ""
 
 
 @dataclass
@@ -225,6 +247,7 @@ class Project:
     tracks: list
     media: dict
     warnings: list
+    markers: list = field(default_factory=list)
 
 
 # --------------------------------------------------------------------------
@@ -237,6 +260,7 @@ class Decoder:
         self.media_dir = Path(media_dir)
         self.media = {}
         self.warnings = []
+        self.markers = []
         self.rate = Rate.from_step(archive.get("stepTime"))
 
     def warn(self, msg):
@@ -258,6 +282,7 @@ class Decoder:
             tracks=tracks,
             media=self.media,
             warnings=self.warnings,
+            markers=self.markers,
         )
 
     def check_unsupported(self):
@@ -352,37 +377,46 @@ class Decoder:
         where = f"'{title}' at {fmt_time(start)}"
         if c.get("assetIsBlank"):
             return None
+        streams = c.get("streams", [])
+        if c.get("assetType") == ASSET_TITLE or c.get("runtimeTitle") or any(
+                s.get("mediaType") == STREAM_TITLE for s in streams):
+            self.title_marker(c, title, start, end)
+            return None
         if c.get("subComp"):
             self.warn(f"{where}: nested/multicam clips aren't supported; skipped.")
             return None
-        streams = c.get("streams", [])
         v = next((s for s in streams if s.get("mediaType") == STREAM_VIDEO), None)
         au = next((s for s in streams if s.get("mediaType") == STREAM_AUDIO), None)
         if not v and not au:
-            self.warn(f"{where}: unsupported clip type (title/generator?); skipped.")
+            self.warn(f"{where}: unsupported clip type; skipped.")
             return None
         media = self.lookup_media(c)
         if media is None:
             self.warn(f"{where}: no media file referenced; skipped.")
             return None
         src = v or au
-        speed = float(src.get("sourceSpeed", 1.0))
-        if abs(speed - 1.0) > 1e-6:
-            self.warn(f"{where}: speed change ({speed:g}x) not converted; clip plays at 100%.")
-        if c.get("reversed"):
-            self.warn(f"{where}: reversed playback not converted.")
-        for s in streams:
-            if s.get("effects"):
-                self.warn(f"{where}: {len(s['effects'])} effect(s) not converted.")
-            kf = [k for k, a in s.get("streamAttributes", {}).items() if a.get("keyframes")]
-            if kf:
-                self.warn(f"{where}: keyframes on {', '.join(sorted(kf))} not converted.")
+        speed = Fraction(float(src.get("sourceSpeed", 1.0))).limit_denominator(10000)
+        if speed <= 0:
+            speed = Fraction(1)
+        if has_keyframes(src, "speed"):
+            self.warn(f"{where}: variable speed (keyframed) became a constant {float(speed):g}x.")
+        reversed_ = bool(c.get("reversed"))
+        if reversed_ and media.duration is None:
+            self.warn(f"{where}: reversed clip but media length unknown; source range may be wrong.")
+
+        notes = []
         if v:
-            if self.transform_changed(v, media):
-                self.warn(f"{where}: position/scale/crop/rotation changes not converted.")
-        volume = float(attr(au, "audioVolume", 1.0)) if au else 1.0
-        pan = float(attr(au, "audioPan", 0.0)) if au else 0.0
-        opacity = float(attr(v, "videoAlpha", 1.0)) if v else 1.0
+            notes += self.look_notes(v)
+        for s in streams:
+            for e in s.get("effects") or []:
+                notes.append("Effect: " + self.effect_desc(e))
+        if au and has_keyframes(au, "audioVolume"):
+            notes.append("Volume keyframes (static level used)")
+        if au and has_keyframes(au, "audioPan"):
+            notes.append("Pan keyframes (static pan used)")
+        if notes:
+            self.warn(f"{where}: {'; '.join(notes)}. Added as a timeline marker to rebuild.")
+
         return Item(
             media=media,
             title=title,
@@ -391,30 +425,83 @@ class Decoder:
             src_in=cmtime(src.get("sourceStart")),
             has_video=v is not None and media.kind != "audio",
             has_audio=au is not None,
-            volume=volume,
-            pan=pan,
-            opacity=opacity,
+            volume=float(attr(au, "audioVolume", 1.0)) if au else 1.0,
+            pan=float(attr(au, "audioPan", 0.0)) if au else 0.0,
+            opacity=float(attr(v, "videoAlpha", 1.0)) if v else 1.0,
+            speed=speed,
+            reversed=reversed_,
+            notes=notes,
         )
 
+    def title_marker(self, c, title, start, end):
+        rt = c.get("runtimeTitle") or {}
+        texts, styles = [], []
+        for layer in rt.get("layers", []):
+            text = (layer.get("text") or {}).get("string")
+            if not text:
+                continue
+            texts.append(text)
+            for run in (layer.get("text") or {}).get("runs", [])[:1]:
+                a = run.get("attributes", {})
+                font = a.get("font", {})
+                style = [font.get("fontName", "")]
+                if a.get("foregroundColor"):
+                    style.append(color_hex(a["foregroundColor"]))
+                if a.get("strokeColor") and a.get("strokeWidth"):
+                    style.append(f"outline {color_hex(a['strokeColor'])}")
+                styles.append(", ".join(x for x in style if x))
+        label = " / ".join(texts) or title
+        self.markers.append(Marker(start, end, f"Title: {label}",
+                                   f"LumaFusion title '{title}'" + (f" ({'; '.join(styles)})" if styles else "")))
+        self.warn(f"Title '{label}' at {fmt_time(start)}: added as a timeline marker to rebuild.")
+
     @staticmethod
-    def transform_changed(v, media):
-        for k, d in VIDEO_DEFAULTS.items():
-            val = attr(v, k, d)
-            if isinstance(d, float):
-                if abs(float(val or 0) - d) > 1e-4:
-                    return True
-            elif val != d:
-                return True
-        if attr(v, "videoScale", [1.0, 1.0]) not in ([1.0, 1.0], [1, 1]):
-            return True
-        crop = attr(v, "videoCrop", [[0, 0], [1, 1]])
-        if crop not in ([[0.0, 0.0], [1.0, 1.0]], [[0, 0], [1, 1]]):
-            return True
+    def look_notes(v):
+        """Describe non-default transform / crop settings on a video stream."""
+        notes = []
+        scale = attr(v, "videoScale", [1.0, 1.0]) or [1.0, 1.0]
+        if any(abs(float(x) - 1) > 1e-4 for x in scale):
+            sx, sy = (float(x) for x in scale)
+            notes.append(f"Zoom {sx:.3f}" if abs(sx - sy) < 1e-4 else f"Zoom X {sx:.3f} Y {sy:.3f}")
         tr = attr(v, "videoTranslation", {})
         point = tr.get("point", [0, 0]) if isinstance(tr, dict) else [0, 0]
-        if any(abs(float(p)) > 1e-4 for p in point):
-            return True
-        return False
+        if any(abs(float(x)) > 1e-4 for x in point):
+            notes.append(f"Position offset {float(point[0]) * 100:+.1f}% / {float(point[1]) * 100:+.1f}% of frame")
+        rot = float(attr(v, "videoTransformRotation", 0.0) or 0) + float(attr(v, "videoRotation", 0.0) or 0)
+        if abs(rot) > 1e-4:
+            notes.append(f"Rotation {math.degrees(rot):.1f}°")
+        crop = attr(v, "videoCrop", [[0, 0], [1, 1]])
+        if crop and [[float(a) for a in p] for p in crop] != [[0.0, 0.0], [1.0, 1.0]]:
+            (x, y), (w, h) = crop
+            notes.append(f"Crop to {float(w) * 100:.1f}% x {float(h) * 100:.1f}% at {float(x) * 100:.1f}%, {float(y) * 100:.1f}%")
+        if attr(v, "videoFlipH", False):
+            notes.append("Flip horizontal")
+        if attr(v, "videoFlipV", False):
+            notes.append("Flip vertical")
+        if attr(v, "videoBlendMode", 0):
+            notes.append(f"Blend mode #{attr(v, 'videoBlendMode', 0)}")
+        kf = sorted(k[5:] if k.startswith("video") else k
+                    for k, a in v.get("streamAttributes", {}).items() if a.get("keyframes") and k != "speed")
+        if kf:
+            n = max(len(a["keyframes"]) for a in v["streamAttributes"].values() if a.get("keyframes"))
+            notes.append(f"Keyframed {', '.join(kf)} ({n} keyframes)")
+        return notes
+
+    @staticmethod
+    def effect_desc(e):
+        name = (e.get("displayName") or e.get("effectName") or "effect").replace("\u273c", "").strip()
+        parms = []
+        for k, p in (e.get("parmValues") or {}).items():
+            val = (p.get("value") or {}).get("value")
+            ident = (p.get("identityValue") or {}).get("value")
+            if ident is not None and val != ident and isinstance(val, (int, float)):
+                parms.append(f"{k[5:] if k.startswith('input') else k} {val:g}")
+        desc = f"{name} [{e.get('effectName', '')}]"
+        if parms:
+            desc += " " + ", ".join(parms)
+        if e.get("enabled") is False:
+            desc += " (disabled)"
+        return desc
 
     def transition(self, c, prev, nxt):
         name = c.get("title") or "Transition"
@@ -432,12 +519,12 @@ class Decoder:
             # half the transition's length from its handles.
             cut = start + dur / 2
             prev.end = cut
-            nxt.src_in -= nxt.start - cut
+            nxt.src_in -= nxt.src_len(nxt.start - cut)
             nxt.start = cut
             self.check_handles(prev, nxt, start, end, where)
             return Transition(name, start, end, "center", prev, nxt)
         if joins_next:
-            nxt.src_in -= nxt.start - start
+            nxt.src_in -= nxt.src_len(nxt.start - start)
             nxt.start = start
             self.check_handles(None, nxt, start, end, where)
             return Transition(name, start, end, "start-black", None, nxt)
@@ -452,7 +539,7 @@ class Decoder:
         if nxt is not None and nxt.src_in < 0:
             self.warn(f"{where}: not enough media before '{nxt.title}' for the full transition.")
         if prev is not None and prev.media.duration is not None:
-            if prev.src_in + (end - prev.start) > prev.media.duration + Fraction(1, 100):
+            if prev.src_in + prev.src_len(end - prev.start) > prev.media.duration + Fraction(1, 100):
                 self.warn(f"{where}: not enough media after '{prev.title}' for the full transition.")
 
 
@@ -537,6 +624,8 @@ class XmemlWriter:
         dur = ET.Element("duration")
         dur.text = str(end)
         seq.insert(1, dur)
+        for mk in self.markers():
+            seq.append(self.marker(mk))
         tc = ET.SubElement(seq, "timecode")
         self.rate.xml(tc)
         ET.SubElement(tc, "string").text = "00:00:00:00"
@@ -546,6 +635,15 @@ class XmemlWriter:
         xml = minidom.parseString(ET.tostring(root, encoding="unicode")).toprettyxml(indent="  ")
         xml = xml.replace('<?xml version="1.0" ?>', '<?xml version="1.0" encoding="UTF-8"?>\n<!DOCTYPE xmeml>', 1)
         Path(out_path).write_text(xml, encoding="utf-8")
+
+    def markers(self):
+        """Project markers (titles) plus one per clip with settings to rebuild."""
+        out = list(self.p.markers)
+        for t in self.p.tracks:
+            for it in t.items:
+                if it.notes:
+                    out.append(Marker(it.start, it.end, f"Rebuild: {it.title}", "; ".join(it.notes)))
+        return sorted(out, key=lambda mk: mk.start)
 
     def new_id(self):
         self.clip_n += 1
@@ -591,9 +689,12 @@ class XmemlWriter:
         mrate.xml(el)
         ET.SubElement(el, "start").text = str(self.rate.frames(it.start))
         ET.SubElement(el, "end").text = str(self.rate.frames(it.end))
-        ET.SubElement(el, "in").text = str(max(0, mrate.frames(it.src_in)))
-        ET.SubElement(el, "out").text = str(mrate.frames(it.src_out))
+        src_in, src_out = it.file_range()
+        ET.SubElement(el, "in").text = str(max(0, mrate.frames(src_in)))
+        ET.SubElement(el, "out").text = str(mrate.frames(src_out))
         el.append(self.file(m))
+        if it.speed != 1 or it.reversed:
+            el.append(self.time_remap(it, kind))
         if kind == "audio":
             st = ET.SubElement(el, "sourcetrack")
             ET.SubElement(st, "mediatype").text = "audio"
@@ -616,6 +717,29 @@ class XmemlWriter:
                 ti, ci = (self.vt_index if k == "video" else self.at_index)[id(it)]
                 ET.SubElement(link, "trackindex").text = str(ti)
                 ET.SubElement(link, "clipindex").text = str(ci)
+        return el
+
+    @staticmethod
+    def time_remap(it, kind):
+        f = ET.Element("filter")
+        eff = ET.SubElement(f, "effect")
+        for tag, text in (("name", "Time Remap"), ("effectid", "timeremap"), ("effectcategory", "motion"),
+                          ("effecttype", "motion"), ("mediatype", kind)):
+            ET.SubElement(eff, tag).text = text
+        for pid, value in (("variablespeed", "0"), ("speed", f"{float(it.speed) * 100:.6g}"),
+                           ("reverse", "TRUE" if it.reversed else "FALSE"), ("frameblending", "FALSE")):
+            p = ET.SubElement(eff, "parameter")
+            ET.SubElement(p, "parameterid").text = pid
+            ET.SubElement(p, "name").text = pid
+            ET.SubElement(p, "value").text = value
+        return f
+
+    def marker(self, mk):
+        el = ET.Element("marker")
+        ET.SubElement(el, "name").text = mk.name
+        ET.SubElement(el, "comment").text = mk.comment
+        ET.SubElement(el, "in").text = str(self.rate.frames(mk.start))
+        ET.SubElement(el, "out").text = str(self.rate.frames(mk.end))
         return el
 
     @staticmethod
@@ -710,12 +834,17 @@ def describe(project):
         kind = "audio track" if t.audio_only else ("main track" if t.offset == 0 else f"overlay track {t.offset}")
         lines.append(f"  [{kind}]")
         events = [(i.start, f"{fmt_time(i.start)}-{fmt_time(i.end)}  {i.title}  "
-                   f"(source {fmt_time(i.src_in)}-{fmt_time(i.src_out)}"
+                   f"(source {fmt_time(i.file_range()[0])}-{fmt_time(i.file_range()[1])}"
+                   + (f", {float(i.speed):g}x" if i.speed != 1 else "")
+                   + (", reversed" if i.reversed else "")
                    + (f", {db(i.volume):+.1f} dB" if abs(i.volume - 1) > 1e-4 else "") + ")")
                   for i in t.items]
         events += [(tr.start, f"{fmt_time(tr.start)}-{fmt_time(tr.end)}  <{tr.name}> transition")
                    for tr in t.transitions]
         lines += ["    " + e for _, e in sorted(events, key=lambda e: e[0])]
+    if project.markers:
+        lines.append("  [markers]")
+        lines += [f"    {fmt_time(m.start)}-{fmt_time(m.end)}  {m.name}  ({m.comment})" for m in project.markers]
     return "\n".join(lines)
 
 

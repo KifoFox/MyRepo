@@ -1,0 +1,4203 @@
+{
+  "attributes": {
+    "assetMarkers": {
+      "x-coredata://D6993384-1F23-47EE-8962-3EFA1610DCCB/SpryAsset/p537724069": [],
+      "x-coredata://D6993384-1F23-47EE-8962-3EFA1610DCCB/SpryAsset/p1491577538": [],
+      "x-coredata://D6993384-1F23-47EE-8962-3EFA1610DCCB/SpryAsset/p872794888": [],
+      "x-coredata://D6993384-1F23-47EE-8962-3EFA1610DCCB/SpryAsset/p1364928764": [],
+      "x-coredata://D6993384-1F23-47EE-8962-3EFA1610DCCB/SpryAsset/p1596225907": [],
+      "x-coredata://D6993384-1F23-47EE-8962-3EFA1610DCCB/SpryAsset/p2087915000": []
+    },
+    "colorTag": "",
+    "compositionMarkers": [],
+    "createdDate": "2026-10-21T03:48:52Z",
+    "editAppVersion": "3.0.2",
+    "exportInfoArray": [],
+    "mediaMap": {
+      "20261019_215836.mp4": "x-coredata://D6993384-1F23-47EE-8962-3EFA1610DCCB/SpryAsset/p1596225907",
+      "20261019_194920.mp4": "x-coredata://D6993384-1F23-47EE-8962-3EFA1610DCCB/SpryAsset/p872794888",
+      "20261019_212354.mp4": "x-coredata://D6993384-1F23-47EE-8962-3EFA1610DCCB/SpryAsset/p1491577538"
+    },
+    "modifiedDate": "2026-10-21T04:21:33Z",
+    "notes": "",
+    "appVersion": "3.0.2",
+    "pixelsPerSecond": 120.0,
+    "snapDistance": 24.0,
+    "snapping": true,
+    "trackMarkers": {}
+  },
+  "backgroundColor": "0.0 0.0 0.0 1.0",
+  "duckEndDuration": {
+    "epoch": 0,
+    "flags": 1,
+    "timescale": 600,
+    "value": 600
+  },
+  "duckEndTime": {
+    "epoch": 0,
+    "flags": 1,
+    "timescale": 600,
+    "value": -90
+  },
+  "duckStartDuration": {
+    "epoch": 0,
+    "flags": 1,
+    "timescale": 600,
+    "value": 600
+  },
+  "duckStartTime": {
+    "epoch": 0,
+    "flags": 1,
+    "timescale": 600,
+    "value": -90
+  },
+  "duckThreshold": -91.0,
+  "duckVolume": -20.0,
+  "duration": {
+    "epoch": 0,
+    "flags": 1,
+    "timescale": 600,
+    "value": 7260
+  },
+  "flags": 0,
+  "lutDataDictionary": {},
+  "primaryVolume": 1.0,
+  "multicamSyncMode": 0,
+  "needsCloudMedia": false,
+  "options": {
+    "srcoAddBlankTimeForVoiceover": false,
+    "srcoPreviewScaling": 1.0,
+    "srcoUseAudioProcessing": false
+  },
+  "resolution": [
+    3840,
+    2160
+  ],
+  "stepTime": {
+    "epoch": 0,
+    "flags": 1,
+    "timescale": 600,
+    "value": 20
+  },
+  "title": "test project",
+  "tracks": [
+    {
+      "attributes": {
+        "notes": ""
+      },
+      "audioPitchAlgorithm": "Varispeed",
+      "clips": [],
+      "colorTag": "",
+      "duration": {
+        "epoch": 0,
+        "flags": 1,
+        "timescale": 600,
+        "value": 0
+      },
+      "editType": 1,
+      "flags": 0,
+      "hidden": false,
+      "isAnchorTrack": false,
+      "languageCode": "en",
+      "locked": false,
+      "stepTime": {
+        "epoch": 0,
+        "flags": 1,
+        "timescale": 600,
+        "value": 20
+      },
+      "title": "",
+      "trackID": "x-coredata://D6993384-1F23-47EE-8962-3EFA1610DCCB/SpryTrack/p1755033324",
+      "trackOffset": 3,
+      "trackType": 0,
+      "trackVolume": 1.0,
+      "visualIndex": 0
+    },
+    {
+      "attributes": {
+        "notes": ""
+      },
+      "audioPitchAlgorithm": "Varispeed",
+      "clips": [
+        {
+          "anchorFromClipIDs": [],
+          "anchorToClipID": "x-coredata://D6993384-1F23-47EE-8962-3EFA1610DCCB/SpryClip/p4888",
+          "anchorToSourceTime": {
+            "epoch": 0,
+            "flags": 1,
+            "timescale": 600,
+            "value": 3280
+          },
+          "assetFlags": 0,
+          "assetIsBlank": false,
+          "assetType": 4,
+          "assetURL": "file://~BUNDLE~/Content/Titles/01-Plain-White.titleData",
+          "attributes": {
+            "assetID": "x-coredata://D6993384-1F23-47EE-8962-3EFA1610DCCB/SpryAsset/p537724069",
+            "audioSamplerate": 0,
+            "colorTag": "",
+            "flags": 0,
+            "naturalSize": [
+              3840,
+              2160
+            ],
+            "notes": "",
+            "originalFilename": "",
+            "sourceLocationName": "",
+            "sourceObjectID": "",
+            "sourceRealPath": "",
+            "title": "Plain-White",
+            "videoBitrate": 0
+          },
+          "clipID": "x-coredata://D6993384-1F23-47EE-8962-3EFA1610DCCB/SpryClip/p4069",
+          "colorTag": "",
+          "flags": 0,
+          "hasNotes": false,
+          "localStatus": 3,
+          "assetMaxDuration": {
+            "epoch": 0,
+            "flags": 1,
+            "timescale": 600,
+            "value": 2400
+          },
+          "reverseURL": null,
+          "reversed": false,
+          "runtimeTitle": {
+            "fileArray": [],
+            "frameSize": [
+              3840,
+              2160
+            ],
+            "layers": [
+              {
+                "anchor": {
+                  "value": {
+                    "type": 6,
+                    "value": "[0.5 0.5]"
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "autoSizeForText": false,
+                "imageURL": null,
+                "hidden": false,
+                "layerID": "91910396-B015-4224-943E-4396E342E06C",
+                "layerRect": [
+                  [
+                    708.2418,
+                    937.17334
+                  ],
+                  [
+                    2423.5164,
+                    302.93332
+                  ]
+                ],
+                "name": "Your Text Here",
+                "opacity": {
+                  "value": {
+                    "type": 2,
+                    "value": 1.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "rotation": {
+                  "value": {
+                    "type": 2,
+                    "value": -0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "scale": {
+                  "value": {
+                    "type": 14,
+                    "value": [
+                      1.0,
+                      1.0
+                    ]
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "shadowAttributes": {
+                  "shadowBlurRadius": 0.0,
+                  "shadowColor": "0.0 0.0 0.0 0.0",
+                  "shadowOffset": [
+                    0.0069813171120070485,
+                    0.0
+                  ]
+                },
+                "shapeAttributes": {
+                  "runs": [
+                    {
+                      "attributes": {
+                        "foregroundColor": "1.0 1.0 1.0 1.0"
+                      },
+                      "length": 5,
+                      "start": 0
+                    }
+                  ],
+                  "string": "shape"
+                },
+                "shapePath": {
+                  "elements": [],
+                  "properties": null
+                },
+                "text": {
+                  "runs": [
+                    {
+                      "attributes": {
+                        "font": {
+                          "fontName": "Arial MT Regular",
+                          "pointSize": 454.375
+                        },
+                        "foregroundColor": "1.0 1.0 0.0 1.0",
+                        "paragraphStyle": {
+                          "alignment": 1,
+                          "baseWritingDirection": -1,
+                          "firstLineHeadIndent": 0,
+                          "headIndent": 0,
+                          "hyphenationFactor": 0.0,
+                          "lineBreakMode": 0,
+                          "lineBreakStrategy": 0,
+                          "lineHeightMultiple": 1.0,
+                          "lineSpacing": 0.0,
+                          "maximumLineHeight": 0,
+                          "minimumLineHeight": 0,
+                          "paragraphSpacing": 0,
+                          "paragraphSpacingBefore": 0,
+                          "tailIndent": 0
+                        },
+                        "shadow": {
+                          "shadowBlurRadius": 0.0,
+                          "shadowColor": "0.0 0.0 0.0 0.482692",
+                          "shadowOffset": [
+                            3.139789623674005E-5,
+                            1.5845667803660035E-5
+                          ]
+                        },
+                        "strokeColor": "0.0 0.0 1.0 1.0",
+                        "strokeWidth": -6.4
+                      },
+                      "length": 14,
+                      "start": 0
+                    }
+                  ],
+                  "string": "Your Text Here"
+                },
+                "translation": {
+                  "value": {
+                    "type": 13,
+                    "value": {
+                      "path": [
+                        {
+                          "interpolation": 0,
+                          "type": 0,
+                          "value": [
+                            0.0,
+                            0.0
+                          ]
+                        },
+                        {
+                          "interpolation": 0,
+                          "type": 1,
+                          "value": [
+                            0.0,
+                            0.0
+                          ]
+                        }
+                      ],
+                      "point": [
+                        0.0,
+                        0.0
+                      ]
+                    }
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "type": 1,
+                "verticalTextAlignment": 1
+              }
+            ]
+          },
+          "selected": true,
+          "shortMediaA": false,
+          "shortMediaB": false,
+          "streams": [
+            {
+              "assetTrackID": 0,
+              "streamAttributes": {
+                "audioDuck": {
+                  "value": {
+                    "type": 1,
+                    "value": 0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "audioFill": {
+                  "value": {
+                    "type": 1,
+                    "value": 0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "audioPan": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "audioVolume": {
+                  "value": {
+                    "type": 2,
+                    "value": 1.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoAlpha": {
+                  "value": {
+                    "type": 2,
+                    "value": 1.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoAnchor": {
+                  "value": {
+                    "type": 6,
+                    "value": "[0.0 0.0]"
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoAspect": {
+                  "value": {
+                    "type": 2,
+                    "value": 1.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoBlendMode": {
+                  "value": {
+                    "type": 1,
+                    "value": 0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoCrop": {
+                  "value": {
+                    "type": 9,
+                    "value": [
+                      [
+                        0.0,
+                        0.0
+                      ],
+                      [
+                        1.0,
+                        1.0
+                      ]
+                    ]
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 11
+                },
+                "videoCropCorner": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 1
+                },
+                "videoCropInverted": {
+                  "value": {
+                    "type": 0,
+                    "value": false
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoCropSoftness": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 1
+                },
+                "videoFitMode": {
+                  "value": {
+                    "type": 1,
+                    "value": 0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoFlipH": {
+                  "value": {
+                    "type": 0,
+                    "value": false
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoFlipV": {
+                  "value": {
+                    "type": 0,
+                    "value": false
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoONSize": {
+                  "value": {
+                    "type": 4,
+                    "value": [
+                      0,
+                      0
+                    ]
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoOrientation": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoRotation": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoScale": {
+                  "value": {
+                    "type": 14,
+                    "value": [
+                      1.0,
+                      1.0
+                    ]
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoTransformRotation": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 5
+                },
+                "videoTranslation": {
+                  "value": {
+                    "type": 13,
+                    "value": {
+                      "path": [
+                        {
+                          "interpolation": 0,
+                          "type": 0,
+                          "value": [
+                            0.33333334,
+                            0.33333334
+                          ]
+                        },
+                        {
+                          "interpolation": 0,
+                          "type": 1,
+                          "value": [
+                            0.6666667,
+                            0.6666667
+                          ]
+                        }
+                      ],
+                      "point": [
+                        0.0,
+                        0.0
+                      ]
+                    }
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                }
+              },
+              "audioFormatID": "",
+              "effects": [],
+              "mediaType": 3,
+              "originalStepTime": {
+                "epoch": 0,
+                "flags": 1,
+                "timescale": 600,
+                "value": 20
+              },
+              "sourceSpeed": 1.0,
+              "sourceStart": {
+                "epoch": 0,
+                "flags": 1,
+                "timescale": 600,
+                "value": 0
+              },
+              "streamID": "x-coredata://D6993384-1F23-47EE-8962-3EFA1610DCCB/SpryStream/p844699747"
+            }
+          ],
+          "subComp": null,
+          "title": "Plain-White",
+          "trackDuration": {
+            "epoch": 0,
+            "flags": 1,
+            "timescale": 600,
+            "value": 2400
+          },
+          "trackStart": {
+            "epoch": 0,
+            "flags": 1,
+            "timescale": 600,
+            "value": 800
+          },
+          "transitionType": 0,
+          "useAudioTrackID": 1,
+          "useVideoTrackID": 0
+        }
+      ],
+      "colorTag": "",
+      "duration": {
+        "epoch": 0,
+        "flags": 1,
+        "timescale": 600,
+        "value": 2400
+      },
+      "editType": 1,
+      "flags": 0,
+      "hidden": false,
+      "isAnchorTrack": false,
+      "languageCode": "en",
+      "locked": false,
+      "stepTime": {
+        "epoch": 0,
+        "flags": 1,
+        "timescale": 600,
+        "value": 20
+      },
+      "title": "",
+      "trackID": "x-coredata://D6993384-1F23-47EE-8962-3EFA1610DCCB/SpryTrack/p1726058940",
+      "trackOffset": 2,
+      "trackType": 0,
+      "trackVolume": 1.0,
+      "visualIndex": 1
+    },
+    {
+      "attributes": {
+        "notes": ""
+      },
+      "audioPitchAlgorithm": "Varispeed",
+      "clips": [
+        {
+          "anchorFromClipIDs": [],
+          "anchorToClipID": "x-coredata://D6993384-1F23-47EE-8962-3EFA1610DCCB/SpryClip/p4888",
+          "anchorToSourceTime": {
+            "epoch": 0,
+            "flags": 1,
+            "timescale": 600,
+            "value": 3040
+          },
+          "assetFlags": 0,
+          "assetIsBlank": false,
+          "assetType": 0,
+          "assetURL": "file://~DOC~/LibraryMedia/PhotoLibrary/20261019_212354.mp4",
+          "attributes": {
+            "assetID": "x-coredata://D6993384-1F23-47EE-8962-3EFA1610DCCB/SpryAsset/p1491577538",
+            "audioSamplerate": 48000,
+            "colorTag": "",
+            "flags": 0,
+            "naturalSize": [
+              1920,
+              1080
+            ],
+            "notes": "",
+            "originalFilename": "20261019_212354.mp4",
+            "sourceLocationName": "",
+            "sourceObjectID": "",
+            "sourceRealPath": "",
+            "title": "20261019_212354.mp4",
+            "videoBitrate": 12048604
+          },
+          "clipID": "x-coredata://D6993384-1F23-47EE-8962-3EFA1610DCCB/SpryClip/p7538",
+          "colorTag": "",
+          "flags": 520,
+          "hasNotes": false,
+          "localStatus": 3,
+          "assetMaxDuration": {
+            "epoch": 0,
+            "flags": 1,
+            "timescale": 600,
+            "value": 2300
+          },
+          "reverseURL": "file://~DOC~/ReversedMedia/D6993384-1F23-47EE-8962-3EFA1610DCCB.mp4",
+          "reversed": true,
+          "runtimeTitle": null,
+          "selected": false,
+          "shortMediaA": false,
+          "shortMediaB": false,
+          "streams": [
+            {
+              "assetTrackID": 0,
+              "streamAttributes": {
+                "audioDuck": {
+                  "value": {
+                    "type": 1,
+                    "value": 0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "audioFill": {
+                  "value": {
+                    "type": 1,
+                    "value": 0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "audioPan": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "audioVolume": {
+                  "value": {
+                    "type": 2,
+                    "value": 1.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "speed": {
+                  "value": {
+                    "type": 2,
+                    "value": 1.06
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoAlpha": {
+                  "value": {
+                    "type": 2,
+                    "value": 1.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoAnchor": {
+                  "value": {
+                    "type": 6,
+                    "value": "[0.0 0.0]"
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoAspect": {
+                  "value": {
+                    "type": 2,
+                    "value": 1.7777778
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoBlendMode": {
+                  "value": {
+                    "type": 1,
+                    "value": 0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoCrop": {
+                  "value": {
+                    "type": 9,
+                    "value": [
+                      [
+                        0.0,
+                        0.0
+                      ],
+                      [
+                        1.0,
+                        1.0
+                      ]
+                    ]
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 11
+                },
+                "videoCropCorner": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 1
+                },
+                "videoCropInverted": {
+                  "value": {
+                    "type": 0,
+                    "value": false
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoCropSoftness": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 1
+                },
+                "videoFitMode": {
+                  "value": {
+                    "type": 1,
+                    "value": 0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoFlipH": {
+                  "value": {
+                    "type": 0,
+                    "value": false
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoFlipV": {
+                  "value": {
+                    "type": 0,
+                    "value": false
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoONSize": {
+                  "value": {
+                    "type": 4,
+                    "value": [
+                      1920,
+                      1080
+                    ]
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoOrientation": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoRotation": {
+                  "value": {
+                    "type": 2,
+                    "value": -0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoScale": {
+                  "value": {
+                    "type": 14,
+                    "value": [
+                      1.0,
+                      1.0
+                    ]
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoTransformRotation": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 5
+                },
+                "videoTranslation": {
+                  "value": {
+                    "type": 13,
+                    "value": {
+                      "path": [
+                        {
+                          "interpolation": 0,
+                          "type": 0,
+                          "value": [
+                            0.33333334,
+                            0.33333334
+                          ]
+                        },
+                        {
+                          "interpolation": 0,
+                          "type": 1,
+                          "value": [
+                            0.6666667,
+                            0.6666667
+                          ]
+                        }
+                      ],
+                      "point": [
+                        0.0,
+                        0.0
+                      ]
+                    }
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                }
+              },
+              "audioFormatID": "",
+              "effects": [],
+              "mediaType": 0,
+              "originalStepTime": {
+                "epoch": 0,
+                "flags": 1,
+                "timescale": 30000,
+                "value": 1001
+              },
+              "sourceSpeed": 1.06,
+              "sourceStart": {
+                "epoch": 0,
+                "flags": 1,
+                "timescale": 30000,
+                "value": 30120
+              },
+              "streamID": "x-coredata://D6993384-1F23-47EE-8962-3EFA1610DCCB/SpryStream/p121276987"
+            },
+            {
+              "assetTrackID": 1,
+              "streamAttributes": {
+                "audioDuck": {
+                  "value": {
+                    "type": 1,
+                    "value": 0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "audioFill": {
+                  "value": {
+                    "type": 1,
+                    "value": 0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "audioPan": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "audioVolume": {
+                  "value": {
+                    "type": 2,
+                    "value": 3.1622778E-5
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "speed": {
+                  "value": {
+                    "type": 2,
+                    "value": 1.06
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoAlpha": {
+                  "value": {
+                    "type": 2,
+                    "value": 1.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoAnchor": {
+                  "value": {
+                    "type": 6,
+                    "value": "[0.0 0.0]"
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoAspect": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoBlendMode": {
+                  "value": {
+                    "type": 1,
+                    "value": 0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoCrop": {
+                  "value": {
+                    "type": 9,
+                    "value": [
+                      [
+                        0.0,
+                        0.0
+                      ],
+                      [
+                        1.0,
+                        1.0
+                      ]
+                    ]
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 11
+                },
+                "videoCropCorner": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 1
+                },
+                "videoCropInverted": {
+                  "value": {
+                    "type": 0,
+                    "value": false
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoCropSoftness": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 1
+                },
+                "videoFitMode": {
+                  "value": {
+                    "type": 1,
+                    "value": 0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoFlipH": {
+                  "value": {
+                    "type": 0,
+                    "value": false
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoFlipV": {
+                  "value": {
+                    "type": 0,
+                    "value": false
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoONSize": {
+                  "value": {
+                    "type": 4,
+                    "value": [
+                      1920,
+                      1080
+                    ]
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoOrientation": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoRotation": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoScale": {
+                  "value": {
+                    "type": 14,
+                    "value": [
+                      1.0,
+                      1.0
+                    ]
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoTransformRotation": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 5
+                },
+                "videoTranslation": {
+                  "value": {
+                    "type": 13,
+                    "value": {
+                      "path": [
+                        {
+                          "interpolation": 0,
+                          "type": 0,
+                          "value": [
+                            0.33333334,
+                            0.33333334
+                          ]
+                        },
+                        {
+                          "interpolation": 0,
+                          "type": 1,
+                          "value": [
+                            0.6666667,
+                            0.6666667
+                          ]
+                        }
+                      ],
+                      "point": [
+                        0.0,
+                        0.0
+                      ]
+                    }
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                }
+              },
+              "audioFormatID": "",
+              "effects": [],
+              "mediaType": 1,
+              "originalStepTime": {
+                "epoch": 0,
+                "flags": 1,
+                "timescale": 30000,
+                "value": 1001
+              },
+              "sourceSpeed": 1.06,
+              "sourceStart": {
+                "epoch": 0,
+                "flags": 1,
+                "timescale": 30000,
+                "value": 30120
+              },
+              "streamID": "x-coredata://D6993384-1F23-47EE-8962-3EFA1610DCCB/SpryStream/p1765695898"
+            }
+          ],
+          "subComp": null,
+          "title": "20261019_212354.mp4",
+          "trackDuration": {
+            "epoch": 0,
+            "flags": 1,
+            "timescale": 600,
+            "value": 1700
+          },
+          "trackStart": {
+            "epoch": 0,
+            "flags": 1,
+            "timescale": 600,
+            "value": 560
+          },
+          "transitionType": 0,
+          "useAudioTrackID": 1,
+          "useVideoTrackID": 0
+        },
+        {
+          "anchorFromClipIDs": [],
+          "anchorToClipID": null,
+          "anchorToSourceTime": {
+            "epoch": 0,
+            "flags": 1,
+            "timescale": 600,
+            "value": 0
+          },
+          "assetFlags": 0,
+          "assetIsBlank": false,
+          "assetType": 3,
+          "assetURL": "file://~BUNDLE~/Content/Transitions/01-Variety/06-Zoom%20Blur.trxdata",
+          "attributes": {
+            "assetID": "x-coredata://D6993384-1F23-47EE-8962-3EFA1610DCCB/SpryAsset/p1364928764",
+            "audioSamplerate": 0,
+            "colorTag": "",
+            "flags": 0,
+            "naturalSize": [
+              0,
+              0
+            ],
+            "notes": "",
+            "originalFilename": "",
+            "sourceLocationName": "albumTransitions",
+            "sourceObjectID": "file://~BUNDLE~/Content/Transitions/01-Variety/06-Zoom%20Blur.trxdata",
+            "sourceRealPath": "",
+            "title": "Zoom Blur",
+            "videoBitrate": 0
+          },
+          "clipID": "x-coredata://D6993384-1F23-47EE-8962-3EFA1610DCCB/SpryClip/p8764",
+          "colorTag": "",
+          "flags": 0,
+          "hasNotes": false,
+          "localStatus": 3,
+          "assetMaxDuration": {
+            "epoch": 0,
+            "flags": 1,
+            "timescale": 600,
+            "value": 600
+          },
+          "reverseURL": null,
+          "reversed": false,
+          "runtimeTitle": null,
+          "selected": false,
+          "shortMediaA": false,
+          "shortMediaB": false,
+          "streams": [
+            {
+              "assetTrackID": 0,
+              "streamAttributes": {
+                "audioDuck": {
+                  "value": {
+                    "type": 1,
+                    "value": 0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "audioFill": {
+                  "value": {
+                    "type": 1,
+                    "value": 0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "audioPan": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "audioVolume": {
+                  "value": {
+                    "type": 2,
+                    "value": 1.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoAlpha": {
+                  "value": {
+                    "type": 2,
+                    "value": 1.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoAnchor": {
+                  "value": {
+                    "type": 6,
+                    "value": "[0.0 0.0]"
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoAspect": {
+                  "value": {
+                    "type": 2,
+                    "value": 1.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoBlendMode": {
+                  "value": {
+                    "type": 1,
+                    "value": 0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoCrop": {
+                  "value": {
+                    "type": 9,
+                    "value": [
+                      [
+                        0.0,
+                        0.0
+                      ],
+                      [
+                        1.0,
+                        1.0
+                      ]
+                    ]
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 11
+                },
+                "videoCropCorner": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 1
+                },
+                "videoCropInverted": {
+                  "value": {
+                    "type": 0,
+                    "value": false
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoCropSoftness": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 1
+                },
+                "videoFitMode": {
+                  "value": {
+                    "type": 1,
+                    "value": 0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoFlipH": {
+                  "value": {
+                    "type": 0,
+                    "value": false
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoFlipV": {
+                  "value": {
+                    "type": 0,
+                    "value": false
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoONSize": {
+                  "value": {
+                    "type": 4,
+                    "value": [
+                      0,
+                      0
+                    ]
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoOrientation": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoRotation": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoScale": {
+                  "value": {
+                    "type": 14,
+                    "value": [
+                      1.0,
+                      1.0
+                    ]
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoTransformRotation": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 5
+                },
+                "videoTranslation": {
+                  "value": {
+                    "type": 13,
+                    "value": {
+                      "path": [
+                        {
+                          "interpolation": 0,
+                          "type": 0,
+                          "value": [
+                            0.33333334,
+                            0.33333334
+                          ]
+                        },
+                        {
+                          "interpolation": 0,
+                          "type": 1,
+                          "value": [
+                            0.6666667,
+                            0.6666667
+                          ]
+                        }
+                      ],
+                      "point": [
+                        0.0,
+                        0.0
+                      ]
+                    }
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                }
+              },
+              "audioFormatID": "",
+              "effects": [],
+              "mediaType": 4,
+              "originalStepTime": {
+                "epoch": 0,
+                "flags": 1,
+                "timescale": 600,
+                "value": 20
+              },
+              "sourceSpeed": 1.0,
+              "sourceStart": {
+                "epoch": 0,
+                "flags": 1,
+                "timescale": 600,
+                "value": 0
+              },
+              "streamID": "x-coredata://D6993384-1F23-47EE-8962-3EFA1610DCCB/SpryStream/p1938431959"
+            }
+          ],
+          "subComp": null,
+          "title": "Zoom Blur",
+          "trackDuration": {
+            "epoch": 0,
+            "flags": 1,
+            "timescale": 600,
+            "value": 600
+          },
+          "trackStart": {
+            "epoch": 0,
+            "flags": 1,
+            "timescale": 600,
+            "value": 2260
+          },
+          "transitionType": 3,
+          "useAudioTrackID": 1,
+          "useVideoTrackID": 0
+        },
+        {
+          "anchorFromClipIDs": [],
+          "anchorToClipID": null,
+          "anchorToSourceTime": {
+            "epoch": 0,
+            "flags": 1,
+            "timescale": 600,
+            "value": 5180
+          },
+          "assetFlags": 0,
+          "assetIsBlank": false,
+          "assetType": 0,
+          "assetURL": "file://~DOC~/LibraryMedia/PhotoLibrary/20261019_215836.mp4",
+          "attributes": {
+            "assetID": "x-coredata://D6993384-1F23-47EE-8962-3EFA1610DCCB/SpryAsset/p1596225907",
+            "audioSamplerate": 48000,
+            "colorTag": "",
+            "flags": 0,
+            "naturalSize": [
+              1920,
+              1080
+            ],
+            "notes": "",
+            "originalFilename": "20261019_215836.mp4",
+            "sourceLocationName": "",
+            "sourceObjectID": "",
+            "sourceRealPath": "",
+            "title": "20261019_215836.mp4",
+            "videoBitrate": 12036594
+          },
+          "clipID": "x-coredata://D6993384-1F23-47EE-8962-3EFA1610DCCB/SpryClip/p5907",
+          "colorTag": "",
+          "flags": 512,
+          "hasNotes": false,
+          "localStatus": 3,
+          "assetMaxDuration": {
+            "epoch": 0,
+            "flags": 1,
+            "timescale": 600,
+            "value": 2198
+          },
+          "reverseURL": null,
+          "reversed": false,
+          "runtimeTitle": null,
+          "selected": false,
+          "shortMediaA": false,
+          "shortMediaB": false,
+          "streams": [
+            {
+              "assetTrackID": 0,
+              "streamAttributes": {
+                "audioDuck": {
+                  "value": {
+                    "type": 1,
+                    "value": 0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "audioFill": {
+                  "value": {
+                    "type": 1,
+                    "value": 0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "audioPan": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "audioVolume": {
+                  "value": {
+                    "type": 2,
+                    "value": 1.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoAlpha": {
+                  "value": {
+                    "type": 2,
+                    "value": 1.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoAnchor": {
+                  "value": {
+                    "type": 6,
+                    "value": "[0.0 0.0]"
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoAspect": {
+                  "value": {
+                    "type": 2,
+                    "value": 1.7777778
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoBlendMode": {
+                  "value": {
+                    "type": 1,
+                    "value": 0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoCrop": {
+                  "value": {
+                    "type": 9,
+                    "value": [
+                      [
+                        0.0,
+                        0.0
+                      ],
+                      [
+                        1.0,
+                        1.0
+                      ]
+                    ]
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 11
+                },
+                "videoCropCorner": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 1
+                },
+                "videoCropInverted": {
+                  "value": {
+                    "type": 0,
+                    "value": false
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoCropSoftness": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 1
+                },
+                "videoFitMode": {
+                  "value": {
+                    "type": 1,
+                    "value": 0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoFlipH": {
+                  "value": {
+                    "type": 0,
+                    "value": false
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoFlipV": {
+                  "value": {
+                    "type": 0,
+                    "value": false
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoONSize": {
+                  "value": {
+                    "type": 4,
+                    "value": [
+                      1920,
+                      1080
+                    ]
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoOrientation": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoRotation": {
+                  "value": {
+                    "type": 2,
+                    "value": -0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoScale": {
+                  "value": {
+                    "type": 14,
+                    "value": [
+                      0.72143674,
+                      0.72143674
+                    ]
+                  },
+                  "identityValue": null,
+                  "keyframes": [
+                    {
+                      "clipTime": {
+                        "epoch": 0,
+                        "flags": 1,
+                        "timescale": 30000,
+                        "value": 12000
+                      },
+                      "ease": [
+                        {
+                          "interpolation": 0,
+                          "type": 0,
+                          "value": [
+                            0.33333334,
+                            0.33333334
+                          ]
+                        },
+                        {
+                          "interpolation": 0,
+                          "type": 1,
+                          "value": [
+                            0.6666667,
+                            0.6666667
+                          ]
+                        }
+                      ],
+                      "value": {
+                        "type": 14,
+                        "value": [
+                          0.72143674,
+                          0.72143674
+                        ]
+                      }
+                    },
+                    {
+                      "clipTime": {
+                        "epoch": 0,
+                        "flags": 1,
+                        "timescale": 30000,
+                        "value": 31020
+                      },
+                      "ease": [
+                        {
+                          "interpolation": 0,
+                          "type": 0,
+                          "value": [
+                            0.33333334,
+                            0.33333334
+                          ]
+                        },
+                        {
+                          "interpolation": 0,
+                          "type": 1,
+                          "value": [
+                            0.6666667,
+                            0.6666667
+                          ]
+                        }
+                      ],
+                      "value": {
+                        "type": 14,
+                        "value": [
+                          1.0,
+                          1.0
+                        ]
+                      }
+                    },
+                    {
+                      "clipTime": {
+                        "epoch": 0,
+                        "flags": 1,
+                        "timescale": 30000,
+                        "value": 55050
+                      },
+                      "ease": [
+                        {
+                          "interpolation": 0,
+                          "type": 0,
+                          "value": [
+                            0.33333334,
+                            0.33333334
+                          ]
+                        },
+                        {
+                          "interpolation": 0,
+                          "type": 1,
+                          "value": [
+                            0.6666667,
+                            0.6666667
+                          ]
+                        }
+                      ],
+                      "value": {
+                        "type": 14,
+                        "value": [
+                          1.0,
+                          1.0
+                        ]
+                      }
+                    },
+                    {
+                      "clipTime": {
+                        "epoch": 0,
+                        "flags": 1,
+                        "timescale": 30000,
+                        "value": 94080
+                      },
+                      "ease": [
+                        {
+                          "interpolation": 0,
+                          "type": 0,
+                          "value": [
+                            0.33333334,
+                            0.33333334
+                          ]
+                        },
+                        {
+                          "interpolation": 0,
+                          "type": 1,
+                          "value": [
+                            0.6666667,
+                            0.6666667
+                          ]
+                        }
+                      ],
+                      "value": {
+                        "type": 14,
+                        "value": [
+                          1.0,
+                          1.0
+                        ]
+                      }
+                    }
+                  ],
+                  "conversionType": 0
+                },
+                "videoTransformRotation": {
+                  "value": {
+                    "type": 2,
+                    "value": -0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [
+                    {
+                      "clipTime": {
+                        "epoch": 0,
+                        "flags": 1,
+                        "timescale": 30000,
+                        "value": 12000
+                      },
+                      "ease": [
+                        {
+                          "interpolation": 0,
+                          "type": 0,
+                          "value": [
+                            0.33333334,
+                            0.33333334
+                          ]
+                        },
+                        {
+                          "interpolation": 0,
+                          "type": 1,
+                          "value": [
+                            0.6666667,
+                            0.6666667
+                          ]
+                        }
+                      ],
+                      "value": {
+                        "type": 2,
+                        "value": -0.0
+                      }
+                    },
+                    {
+                      "clipTime": {
+                        "epoch": 0,
+                        "flags": 1,
+                        "timescale": 30000,
+                        "value": 31020
+                      },
+                      "ease": [
+                        {
+                          "interpolation": 0,
+                          "type": 0,
+                          "value": [
+                            0.33333334,
+                            0.33333334
+                          ]
+                        },
+                        {
+                          "interpolation": 0,
+                          "type": 1,
+                          "value": [
+                            0.6666667,
+                            0.6666667
+                          ]
+                        }
+                      ],
+                      "value": {
+                        "type": 2,
+                        "value": -0.0
+                      }
+                    },
+                    {
+                      "clipTime": {
+                        "epoch": 0,
+                        "flags": 1,
+                        "timescale": 30000,
+                        "value": 55050
+                      },
+                      "ease": [
+                        {
+                          "interpolation": 0,
+                          "type": 0,
+                          "value": [
+                            0.33333334,
+                            0.33333334
+                          ]
+                        },
+                        {
+                          "interpolation": 0,
+                          "type": 1,
+                          "value": [
+                            0.6666667,
+                            0.6666667
+                          ]
+                        }
+                      ],
+                      "value": {
+                        "type": 2,
+                        "value": -0.0
+                      }
+                    },
+                    {
+                      "clipTime": {
+                        "epoch": 0,
+                        "flags": 1,
+                        "timescale": 30000,
+                        "value": 94080
+                      },
+                      "ease": [
+                        {
+                          "interpolation": 0,
+                          "type": 0,
+                          "value": [
+                            0.33333334,
+                            0.33333334
+                          ]
+                        },
+                        {
+                          "interpolation": 0,
+                          "type": 1,
+                          "value": [
+                            0.6666667,
+                            0.6666667
+                          ]
+                        }
+                      ],
+                      "value": {
+                        "type": 2,
+                        "value": 0.077280544
+                      }
+                    }
+                  ],
+                  "conversionType": 0
+                },
+                "videoTranslation": {
+                  "value": {
+                    "type": 13,
+                    "value": {
+                      "path": [
+                        {
+                          "interpolation": 0,
+                          "type": 0,
+                          "value": [
+                            0.0,
+                            0.0
+                          ]
+                        },
+                        {
+                          "interpolation": 0,
+                          "type": 1,
+                          "value": [
+                            0.0,
+                            0.0
+                          ]
+                        }
+                      ],
+                      "point": [
+                        0.029600983,
+                        -0.023267467
+                      ]
+                    }
+                  },
+                  "identityValue": null,
+                  "keyframes": [
+                    {
+                      "clipTime": {
+                        "epoch": 0,
+                        "flags": 1,
+                        "timescale": 30000,
+                        "value": 12000
+                      },
+                      "ease": [
+                        {
+                          "interpolation": 0,
+                          "type": 0,
+                          "value": [
+                            0.33333334,
+                            0.33333334
+                          ]
+                        },
+                        {
+                          "interpolation": 0,
+                          "type": 1,
+                          "value": [
+                            0.6666667,
+                            0.6666667
+                          ]
+                        }
+                      ],
+                      "value": {
+                        "type": 13,
+                        "value": {
+                          "path": [
+                            {
+                              "interpolation": 0,
+                              "type": 0,
+                              "value": [
+                                0.0,
+                                0.0
+                              ]
+                            },
+                            {
+                              "interpolation": 0,
+                              "type": 1,
+                              "value": [
+                                0.0,
+                                0.0
+                              ]
+                            }
+                          ],
+                          "point": [
+                            0.029600983,
+                            -0.023267467
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "clipTime": {
+                        "epoch": 0,
+                        "flags": 1,
+                        "timescale": 30000,
+                        "value": 31020
+                      },
+                      "ease": [
+                        {
+                          "interpolation": 0,
+                          "type": 0,
+                          "value": [
+                            0.33333334,
+                            0.33333334
+                          ]
+                        },
+                        {
+                          "interpolation": 0,
+                          "type": 1,
+                          "value": [
+                            0.6666667,
+                            0.6666667
+                          ]
+                        }
+                      ],
+                      "value": {
+                        "type": 13,
+                        "value": {
+                          "path": [
+                            {
+                              "interpolation": 0,
+                              "type": 0,
+                              "value": [
+                                0.0,
+                                0.0
+                              ]
+                            },
+                            {
+                              "interpolation": 0,
+                              "type": 1,
+                              "value": [
+                                0.0,
+                                0.0
+                              ]
+                            }
+                          ],
+                          "point": [
+                            0.029600983,
+                            -0.023267467
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "clipTime": {
+                        "epoch": 0,
+                        "flags": 1,
+                        "timescale": 30000,
+                        "value": 55050
+                      },
+                      "ease": [
+                        {
+                          "interpolation": 0,
+                          "type": 0,
+                          "value": [
+                            0.33333334,
+                            0.33333334
+                          ]
+                        },
+                        {
+                          "interpolation": 0,
+                          "type": 1,
+                          "value": [
+                            0.6666667,
+                            0.6666667
+                          ]
+                        }
+                      ],
+                      "value": {
+                        "type": 13,
+                        "value": {
+                          "path": [
+                            {
+                              "interpolation": 0,
+                              "type": 0,
+                              "value": [
+                                0.0,
+                                0.0
+                              ]
+                            },
+                            {
+                              "interpolation": 0,
+                              "type": 1,
+                              "value": [
+                                0.0,
+                                0.0
+                              ]
+                            }
+                          ],
+                          "point": [
+                            0.69,
+                            0.0
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "clipTime": {
+                        "epoch": 0,
+                        "flags": 1,
+                        "timescale": 30000,
+                        "value": 94080
+                      },
+                      "ease": [
+                        {
+                          "interpolation": 0,
+                          "type": 0,
+                          "value": [
+                            0.33333334,
+                            0.33333334
+                          ]
+                        },
+                        {
+                          "interpolation": 0,
+                          "type": 1,
+                          "value": [
+                            0.6666667,
+                            0.6666667
+                          ]
+                        }
+                      ],
+                      "value": {
+                        "type": 13,
+                        "value": {
+                          "path": [
+                            {
+                              "interpolation": 0,
+                              "type": 0,
+                              "value": [
+                                0.0,
+                                0.0
+                              ]
+                            },
+                            {
+                              "interpolation": 0,
+                              "type": 1,
+                              "value": [
+                                0.0,
+                                0.0
+                              ]
+                            }
+                          ],
+                          "point": [
+                            0.03964813,
+                            -0.10858151
+                          ]
+                        }
+                      }
+                    }
+                  ],
+                  "conversionType": 0
+                }
+              },
+              "audioFormatID": "",
+              "effects": [],
+              "mediaType": 0,
+              "originalStepTime": {
+                "epoch": 0,
+                "flags": 1,
+                "timescale": 30000,
+                "value": 1001
+              },
+              "sourceSpeed": 1.0,
+              "sourceStart": {
+                "epoch": 0,
+                "flags": 1,
+                "timescale": 30000,
+                "value": 15000
+              },
+              "streamID": "x-coredata://D6993384-1F23-47EE-8962-3EFA1610DCCB/SpryStream/p1679137890"
+            },
+            {
+              "assetTrackID": 1,
+              "streamAttributes": {
+                "audioDuck": {
+                  "value": {
+                    "type": 1,
+                    "value": 0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "audioFill": {
+                  "value": {
+                    "type": 1,
+                    "value": 0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "audioPan": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "audioVolume": {
+                  "value": {
+                    "type": 2,
+                    "value": 1.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoAlpha": {
+                  "value": {
+                    "type": 2,
+                    "value": 1.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoAnchor": {
+                  "value": {
+                    "type": 6,
+                    "value": "[0.0 0.0]"
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoAspect": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoBlendMode": {
+                  "value": {
+                    "type": 1,
+                    "value": 0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoCrop": {
+                  "value": {
+                    "type": 9,
+                    "value": [
+                      [
+                        0.0,
+                        0.0
+                      ],
+                      [
+                        1.0,
+                        1.0
+                      ]
+                    ]
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 11
+                },
+                "videoCropCorner": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 1
+                },
+                "videoCropInverted": {
+                  "value": {
+                    "type": 0,
+                    "value": false
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoCropSoftness": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 1
+                },
+                "videoFitMode": {
+                  "value": {
+                    "type": 1,
+                    "value": 0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoFlipH": {
+                  "value": {
+                    "type": 0,
+                    "value": false
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoFlipV": {
+                  "value": {
+                    "type": 0,
+                    "value": false
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoONSize": {
+                  "value": {
+                    "type": 4,
+                    "value": [
+                      1920,
+                      1080
+                    ]
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoOrientation": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoRotation": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoScale": {
+                  "value": {
+                    "type": 14,
+                    "value": [
+                      1.0,
+                      1.0
+                    ]
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoTransformRotation": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 5
+                },
+                "videoTranslation": {
+                  "value": {
+                    "type": 13,
+                    "value": {
+                      "path": [
+                        {
+                          "interpolation": 0,
+                          "type": 0,
+                          "value": [
+                            0.33333334,
+                            0.33333334
+                          ]
+                        },
+                        {
+                          "interpolation": 0,
+                          "type": 1,
+                          "value": [
+                            0.6666667,
+                            0.6666667
+                          ]
+                        }
+                      ],
+                      "point": [
+                        0.0,
+                        0.0
+                      ]
+                    }
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                }
+              },
+              "audioFormatID": "",
+              "effects": [],
+              "mediaType": 1,
+              "originalStepTime": {
+                "epoch": 0,
+                "flags": 1,
+                "timescale": 30000,
+                "value": 1001
+              },
+              "sourceSpeed": 1.0,
+              "sourceStart": {
+                "epoch": 0,
+                "flags": 1,
+                "timescale": 30000,
+                "value": 15000
+              },
+              "streamID": "x-coredata://D6993384-1F23-47EE-8962-3EFA1610DCCB/SpryStream/p1532461051"
+            }
+          ],
+          "subComp": null,
+          "title": "20261019_215836.mp4",
+          "trackDuration": {
+            "epoch": 0,
+            "flags": 1,
+            "timescale": 600,
+            "value": 1900
+          },
+          "trackStart": {
+            "epoch": 0,
+            "flags": 1,
+            "timescale": 600,
+            "value": 2860
+          },
+          "transitionType": 0,
+          "useAudioTrackID": 1,
+          "useVideoTrackID": 0
+        }
+      ],
+      "colorTag": "",
+      "duration": {
+        "epoch": 0,
+        "flags": 1,
+        "timescale": 600,
+        "value": 5100
+      },
+      "editType": 1,
+      "flags": 0,
+      "hidden": false,
+      "isAnchorTrack": false,
+      "languageCode": "en",
+      "locked": false,
+      "stepTime": {
+        "epoch": 0,
+        "flags": 1,
+        "timescale": 600,
+        "value": 20
+      },
+      "title": "",
+      "trackID": "x-coredata://D6993384-1F23-47EE-8962-3EFA1610DCCB/SpryTrack/p1833241221",
+      "trackOffset": 1,
+      "trackType": 0,
+      "trackVolume": 1.0,
+      "visualIndex": 2
+    },
+    {
+      "attributes": {
+        "notes": ""
+      },
+      "audioPitchAlgorithm": "Varispeed",
+      "clips": [
+        {
+          "anchorFromClipIDs": [],
+          "anchorToClipID": null,
+          "anchorToSourceTime": {
+            "epoch": 0,
+            "flags": 1,
+            "timescale": 600,
+            "value": 0
+          },
+          "assetFlags": 0,
+          "assetIsBlank": false,
+          "assetType": 0,
+          "assetURL": "file://~DOC~/LibraryMedia/PhotoLibrary/20261019_194920.mp4",
+          "attributes": {
+            "assetID": "x-coredata://D6993384-1F23-47EE-8962-3EFA1610DCCB/SpryAsset/p872794888",
+            "audioSamplerate": 48000,
+            "colorTag": "",
+            "flags": 0,
+            "naturalSize": [
+              1920,
+              1080
+            ],
+            "notes": "",
+            "originalFilename": "20261019_194920.mp4",
+            "sourceLocationName": "",
+            "sourceObjectID": "",
+            "sourceRealPath": "",
+            "title": "20261019_194920.mp4",
+            "videoBitrate": 12203674
+          },
+          "clipID": "x-coredata://D6993384-1F23-47EE-8962-3EFA1610DCCB/SpryClip/p4888",
+          "colorTag": "",
+          "flags": 512,
+          "hasNotes": false,
+          "localStatus": 3,
+          "assetMaxDuration": {
+            "epoch": 0,
+            "flags": 1,
+            "timescale": 600,
+            "value": 6500
+          },
+          "reverseURL": null,
+          "reversed": false,
+          "runtimeTitle": null,
+          "selected": false,
+          "shortMediaA": false,
+          "shortMediaB": false,
+          "streams": [
+            {
+              "assetTrackID": 0,
+              "streamAttributes": {
+                "audioDuck": {
+                  "value": {
+                    "type": 1,
+                    "value": 0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "audioFill": {
+                  "value": {
+                    "type": 1,
+                    "value": 0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "audioPan": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "audioVolume": {
+                  "value": {
+                    "type": 2,
+                    "value": 1.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoAlpha": {
+                  "value": {
+                    "type": 2,
+                    "value": 1.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoAnchor": {
+                  "value": {
+                    "type": 6,
+                    "value": "[0.0 0.0]"
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoAspect": {
+                  "value": {
+                    "type": 2,
+                    "value": 1.7777778
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoBlendMode": {
+                  "value": {
+                    "type": 1,
+                    "value": 0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoCrop": {
+                  "value": {
+                    "type": 9,
+                    "value": [
+                      [
+                        0.0,
+                        0.0
+                      ],
+                      [
+                        1.0,
+                        1.0
+                      ]
+                    ]
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 11
+                },
+                "videoCropCorner": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 1
+                },
+                "videoCropInverted": {
+                  "value": {
+                    "type": 0,
+                    "value": false
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoCropSoftness": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 1
+                },
+                "videoFitMode": {
+                  "value": {
+                    "type": 1,
+                    "value": 0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoFlipH": {
+                  "value": {
+                    "type": 0,
+                    "value": false
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoFlipV": {
+                  "value": {
+                    "type": 0,
+                    "value": false
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoONSize": {
+                  "value": {
+                    "type": 4,
+                    "value": [
+                      1920,
+                      1080
+                    ]
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoOrientation": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoRotation": {
+                  "value": {
+                    "type": 2,
+                    "value": -0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoScale": {
+                  "value": {
+                    "type": 14,
+                    "value": [
+                      1.0,
+                      1.0
+                    ]
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoTransformRotation": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 5
+                },
+                "videoTranslation": {
+                  "value": {
+                    "type": 13,
+                    "value": {
+                      "path": [
+                        {
+                          "interpolation": 0,
+                          "type": 0,
+                          "value": [
+                            0.33333334,
+                            0.33333334
+                          ]
+                        },
+                        {
+                          "interpolation": 0,
+                          "type": 1,
+                          "value": [
+                            0.6666667,
+                            0.6666667
+                          ]
+                        }
+                      ],
+                      "point": [
+                        0.0,
+                        0.0
+                      ]
+                    }
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                }
+              },
+              "audioFormatID": "",
+              "effects": [],
+              "mediaType": 0,
+              "originalStepTime": {
+                "epoch": 0,
+                "flags": 1,
+                "timescale": 30000,
+                "value": 1001
+              },
+              "sourceSpeed": 1.0,
+              "sourceStart": {
+                "epoch": 0,
+                "flags": 1,
+                "timescale": 30000,
+                "value": 30030
+              },
+              "streamID": "x-coredata://D6993384-1F23-47EE-8962-3EFA1610DCCB/SpryStream/p1254362221"
+            },
+            {
+              "assetTrackID": 1,
+              "streamAttributes": {
+                "audioDuck": {
+                  "value": {
+                    "type": 1,
+                    "value": 0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "audioFill": {
+                  "value": {
+                    "type": 1,
+                    "value": 0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "audioPan": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "audioVolume": {
+                  "value": {
+                    "type": 2,
+                    "value": 1.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoAlpha": {
+                  "value": {
+                    "type": 2,
+                    "value": 1.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoAnchor": {
+                  "value": {
+                    "type": 6,
+                    "value": "[0.0 0.0]"
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoAspect": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoBlendMode": {
+                  "value": {
+                    "type": 1,
+                    "value": 0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoCrop": {
+                  "value": {
+                    "type": 9,
+                    "value": [
+                      [
+                        0.0,
+                        0.0
+                      ],
+                      [
+                        1.0,
+                        1.0
+                      ]
+                    ]
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 11
+                },
+                "videoCropCorner": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 1
+                },
+                "videoCropInverted": {
+                  "value": {
+                    "type": 0,
+                    "value": false
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoCropSoftness": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 1
+                },
+                "videoFitMode": {
+                  "value": {
+                    "type": 1,
+                    "value": 0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoFlipH": {
+                  "value": {
+                    "type": 0,
+                    "value": false
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoFlipV": {
+                  "value": {
+                    "type": 0,
+                    "value": false
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoONSize": {
+                  "value": {
+                    "type": 4,
+                    "value": [
+                      1920,
+                      1080
+                    ]
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoOrientation": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoRotation": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoScale": {
+                  "value": {
+                    "type": 14,
+                    "value": [
+                      1.0,
+                      1.0
+                    ]
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoTransformRotation": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 5
+                },
+                "videoTranslation": {
+                  "value": {
+                    "type": 13,
+                    "value": {
+                      "path": [
+                        {
+                          "interpolation": 0,
+                          "type": 0,
+                          "value": [
+                            0.33333334,
+                            0.33333334
+                          ]
+                        },
+                        {
+                          "interpolation": 0,
+                          "type": 1,
+                          "value": [
+                            0.6666667,
+                            0.6666667
+                          ]
+                        }
+                      ],
+                      "point": [
+                        0.0,
+                        0.0
+                      ]
+                    }
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                }
+              },
+              "audioFormatID": "",
+              "effects": [],
+              "mediaType": 1,
+              "originalStepTime": {
+                "epoch": 0,
+                "flags": 1,
+                "timescale": 30000,
+                "value": 1001
+              },
+              "sourceSpeed": 1.0,
+              "sourceStart": {
+                "epoch": 0,
+                "flags": 1,
+                "timescale": 30000,
+                "value": 30030
+              },
+              "streamID": "x-coredata://D6993384-1F23-47EE-8962-3EFA1610DCCB/SpryStream/p610492014"
+            }
+          ],
+          "subComp": null,
+          "title": "20261019_194920.mp4",
+          "trackDuration": {
+            "epoch": 0,
+            "flags": 1,
+            "timescale": 600,
+            "value": 5900
+          },
+          "trackStart": {
+            "epoch": 0,
+            "flags": 1,
+            "timescale": 600,
+            "value": 0
+          },
+          "transitionType": 0,
+          "useAudioTrackID": 1,
+          "useVideoTrackID": 0
+        },
+        {
+          "anchorFromClipIDs": [],
+          "anchorToClipID": null,
+          "anchorToSourceTime": {
+            "epoch": 0,
+            "flags": 1,
+            "timescale": 600,
+            "value": 0
+          },
+          "assetFlags": 0,
+          "assetIsBlank": false,
+          "assetType": 3,
+          "assetURL": "file://~BUNDLE~/Content/Transitions/04-Pushes/01-Push%20Up.trxdata",
+          "attributes": {
+            "assetID": "x-coredata://D6993384-1F23-47EE-8962-3EFA1610DCCB/SpryAsset/p2087915000",
+            "audioSamplerate": 0,
+            "colorTag": "",
+            "flags": 0,
+            "naturalSize": [
+              0,
+              0
+            ],
+            "notes": "",
+            "originalFilename": "",
+            "sourceLocationName": "albumTransitions",
+            "sourceObjectID": "file://~BUNDLE~/Content/Transitions/04-Pushes/01-Push%20Up.trxdata",
+            "sourceRealPath": "",
+            "title": "Push Up",
+            "videoBitrate": 0
+          },
+          "clipID": "x-coredata://D6993384-1F23-47EE-8962-3EFA1610DCCB/SpryClip/p5000",
+          "colorTag": "",
+          "flags": 0,
+          "hasNotes": false,
+          "localStatus": 3,
+          "assetMaxDuration": {
+            "epoch": 0,
+            "flags": 1,
+            "timescale": 600,
+            "value": 600
+          },
+          "reverseURL": null,
+          "reversed": false,
+          "runtimeTitle": null,
+          "selected": false,
+          "shortMediaA": false,
+          "shortMediaB": false,
+          "streams": [
+            {
+              "assetTrackID": 0,
+              "streamAttributes": {
+                "audioDuck": {
+                  "value": {
+                    "type": 1,
+                    "value": 0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "audioFill": {
+                  "value": {
+                    "type": 1,
+                    "value": 0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "audioPan": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "audioVolume": {
+                  "value": {
+                    "type": 2,
+                    "value": 1.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoAlpha": {
+                  "value": {
+                    "type": 2,
+                    "value": 1.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoAnchor": {
+                  "value": {
+                    "type": 6,
+                    "value": "[0.0 0.0]"
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoAspect": {
+                  "value": {
+                    "type": 2,
+                    "value": 1.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoBlendMode": {
+                  "value": {
+                    "type": 1,
+                    "value": 0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoCrop": {
+                  "value": {
+                    "type": 9,
+                    "value": [
+                      [
+                        0.0,
+                        0.0
+                      ],
+                      [
+                        1.0,
+                        1.0
+                      ]
+                    ]
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 11
+                },
+                "videoCropCorner": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 1
+                },
+                "videoCropInverted": {
+                  "value": {
+                    "type": 0,
+                    "value": false
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoCropSoftness": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 1
+                },
+                "videoFitMode": {
+                  "value": {
+                    "type": 1,
+                    "value": 0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoFlipH": {
+                  "value": {
+                    "type": 0,
+                    "value": false
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoFlipV": {
+                  "value": {
+                    "type": 0,
+                    "value": false
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoONSize": {
+                  "value": {
+                    "type": 4,
+                    "value": [
+                      0,
+                      0
+                    ]
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoOrientation": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoRotation": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoScale": {
+                  "value": {
+                    "type": 14,
+                    "value": [
+                      1.0,
+                      1.0
+                    ]
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoTransformRotation": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 5
+                },
+                "videoTranslation": {
+                  "value": {
+                    "type": 13,
+                    "value": {
+                      "path": [
+                        {
+                          "interpolation": 0,
+                          "type": 0,
+                          "value": [
+                            0.33333334,
+                            0.33333334
+                          ]
+                        },
+                        {
+                          "interpolation": 0,
+                          "type": 1,
+                          "value": [
+                            0.6666667,
+                            0.6666667
+                          ]
+                        }
+                      ],
+                      "point": [
+                        0.0,
+                        0.0
+                      ]
+                    }
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                }
+              },
+              "audioFormatID": "",
+              "effects": [],
+              "mediaType": 4,
+              "originalStepTime": {
+                "epoch": 0,
+                "flags": 1,
+                "timescale": 600,
+                "value": 20
+              },
+              "sourceSpeed": 1.0,
+              "sourceStart": {
+                "epoch": 0,
+                "flags": 1,
+                "timescale": 600,
+                "value": 0
+              },
+              "streamID": "x-coredata://D6993384-1F23-47EE-8962-3EFA1610DCCB/SpryStream/p2079776909"
+            }
+          ],
+          "subComp": null,
+          "title": "Push Up",
+          "trackDuration": {
+            "epoch": 0,
+            "flags": 1,
+            "timescale": 600,
+            "value": 600
+          },
+          "trackStart": {
+            "epoch": 0,
+            "flags": 1,
+            "timescale": 600,
+            "value": 5900
+          },
+          "transitionType": 3,
+          "useAudioTrackID": 1,
+          "useVideoTrackID": 0
+        },
+        {
+          "anchorFromClipIDs": [],
+          "anchorToClipID": null,
+          "anchorToSourceTime": {
+            "epoch": 0,
+            "flags": 1,
+            "timescale": 600,
+            "value": 0
+          },
+          "assetFlags": 0,
+          "assetIsBlank": false,
+          "assetType": 0,
+          "assetURL": "file://~DOC~/LibraryMedia/PhotoLibrary/20261019_194920.mp4",
+          "attributes": {
+            "assetID": "x-coredata://D6993384-1F23-47EE-8962-3EFA1610DCCB/SpryAsset/p872794888",
+            "audioSamplerate": 48000,
+            "colorTag": "",
+            "flags": 0,
+            "naturalSize": [
+              1920,
+              1080
+            ],
+            "notes": "",
+            "originalFilename": "20261019_194920.mp4",
+            "sourceLocationName": "",
+            "sourceObjectID": "",
+            "sourceRealPath": "",
+            "title": "20261019_194920.mp4",
+            "videoBitrate": 12203674
+          },
+          "clipID": "x-coredata://D6993384-1F23-47EE-8962-3EFA1610DCCB/SpryClip/p9281",
+          "colorTag": "",
+          "flags": 512,
+          "hasNotes": false,
+          "localStatus": 3,
+          "assetMaxDuration": {
+            "epoch": 0,
+            "flags": 1,
+            "timescale": 600,
+            "value": 1364
+          },
+          "reverseURL": null,
+          "reversed": false,
+          "runtimeTitle": null,
+          "selected": false,
+          "shortMediaA": false,
+          "shortMediaB": false,
+          "streams": [
+            {
+              "assetTrackID": 0,
+              "streamAttributes": {
+                "audioDuck": {
+                  "value": {
+                    "type": 1,
+                    "value": 0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "audioFill": {
+                  "value": {
+                    "type": 1,
+                    "value": 0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "audioPan": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "audioVolume": {
+                  "value": {
+                    "type": 2,
+                    "value": 1.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoAlpha": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.519
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoAnchor": {
+                  "value": {
+                    "type": 6,
+                    "value": "[0.0 0.0]"
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoAspect": {
+                  "value": {
+                    "type": 2,
+                    "value": 1.7777778
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoBlendMode": {
+                  "value": {
+                    "type": 1,
+                    "value": 0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoCrop": {
+                  "value": {
+                    "type": 9,
+                    "value": [
+                      [
+                        0.07,
+                        0.125
+                      ],
+                      [
+                        0.829,
+                        0.672
+                      ]
+                    ]
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 11
+                },
+                "videoCropCorner": {
+                  "value": {
+                    "type": 2,
+                    "value": 191.16002
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 1
+                },
+                "videoCropInverted": {
+                  "value": {
+                    "type": 0,
+                    "value": false
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoCropSoftness": {
+                  "value": {
+                    "type": 2,
+                    "value": 29.6
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 1
+                },
+                "videoFitMode": {
+                  "value": {
+                    "type": 1,
+                    "value": 0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoFlipH": {
+                  "value": {
+                    "type": 0,
+                    "value": false
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoFlipV": {
+                  "value": {
+                    "type": 0,
+                    "value": false
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoONSize": {
+                  "value": {
+                    "type": 4,
+                    "value": [
+                      1920,
+                      1080
+                    ]
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoOrientation": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoRotation": {
+                  "value": {
+                    "type": 2,
+                    "value": -0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoScale": {
+                  "value": {
+                    "type": 14,
+                    "value": [
+                      1.485,
+                      1.485
+                    ]
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoTransformRotation": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.12703346
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoTranslation": {
+                  "value": {
+                    "type": 13,
+                    "value": {
+                      "path": [
+                        {
+                          "interpolation": 0,
+                          "type": 0,
+                          "value": [
+                            0.0,
+                            0.0
+                          ]
+                        },
+                        {
+                          "interpolation": 0,
+                          "type": 1,
+                          "value": [
+                            0.0,
+                            0.0
+                          ]
+                        }
+                      ],
+                      "point": [
+                        0.379,
+                        0.468
+                      ]
+                    }
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                }
+              },
+              "audioFormatID": "",
+              "effects": [
+                {
+                  "displayName": "Gaussian 10 ✼",
+                  "effectID": "x-coredata://D6993384-1F23-47EE-8962-3EFA1610DCCB/SpryEffect/p205042675",
+                  "effectName": "CIGaussianBlur",
+                  "enabled": true,
+                  "parmValues": {
+                    "inputRadius": {
+                      "value": {
+                        "type": 2,
+                        "value": 1.0
+                      },
+                      "identityValue": {
+                        "type": 2,
+                        "value": 0.0
+                      },
+                      "keyframes": [],
+                      "conversionType": 1
+                    }
+                  }
+                },
+                {
+                  "displayName": "Person Key ✼",
+                  "effectID": "x-coredata://D6993384-1F23-47EE-8962-3EFA1610DCCB/SpryEffect/p1054958391",
+                  "effectName": "SpryPersonKey",
+                  "enabled": true,
+                  "parmValues": {
+                    "inputBestQuality": {
+                      "value": {
+                        "type": 1,
+                        "value": 1
+                      },
+                      "keyframes": [],
+                      "conversionType": 0
+                    },
+                    "inputEdgeBlurRadius": {
+                      "value": {
+                        "type": 2,
+                        "value": 5.1
+                      },
+                      "identityValue": {
+                        "type": 2,
+                        "value": 0.0
+                      },
+                      "keyframes": [],
+                      "conversionType": 1
+                    },
+                    "inputErosionDistance": {
+                      "value": {
+                        "type": 2,
+                        "value": 5.0
+                      },
+                      "identityValue": {
+                        "type": 2,
+                        "value": 0.0
+                      },
+                      "keyframes": [],
+                      "conversionType": 1
+                    },
+                    "inputMaskBlendMode": {
+                      "value": {
+                        "type": 1,
+                        "value": 0
+                      },
+                      "identityValue": {
+                        "type": 1,
+                        "value": 0
+                      },
+                      "keyframes": [],
+                      "conversionType": 0
+                    },
+                    "inputMaskMode": {
+                      "value": {
+                        "type": 1,
+                        "value": 0
+                      },
+                      "identityValue": {
+                        "type": 1,
+                        "value": 0
+                      },
+                      "keyframes": [],
+                      "conversionType": 0
+                    },
+                    "inputReverseKey": {
+                      "value": {
+                        "type": 1,
+                        "value": 0
+                      },
+                      "identityValue": {
+                        "type": 1,
+                        "value": 0
+                      },
+                      "keyframes": [],
+                      "conversionType": 0
+                    }
+                  }
+                }
+              ],
+              "mediaType": 0,
+              "originalStepTime": {
+                "epoch": 0,
+                "flags": 1,
+                "timescale": 30000,
+                "value": 1001
+              },
+              "sourceSpeed": 1.0,
+              "sourceStart": {
+                "epoch": 0,
+                "flags": 1,
+                "timescale": 30000,
+                "value": 377010
+              },
+              "streamID": "x-coredata://D6993384-1F23-47EE-8962-3EFA1610DCCB/SpryStream/p1580544909"
+            },
+            {
+              "assetTrackID": 1,
+              "streamAttributes": {
+                "audioDuck": {
+                  "value": {
+                    "type": 1,
+                    "value": 0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "audioFill": {
+                  "value": {
+                    "type": 1,
+                    "value": 0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "audioPan": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "audioVolume": {
+                  "value": {
+                    "type": 2,
+                    "value": 1.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoAlpha": {
+                  "value": {
+                    "type": 2,
+                    "value": 1.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoAnchor": {
+                  "value": {
+                    "type": 6,
+                    "value": "[0.0 0.0]"
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoAspect": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoBlendMode": {
+                  "value": {
+                    "type": 1,
+                    "value": 0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoCrop": {
+                  "value": {
+                    "type": 9,
+                    "value": [
+                      [
+                        0.0,
+                        0.0
+                      ],
+                      [
+                        1.0,
+                        1.0
+                      ]
+                    ]
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 11
+                },
+                "videoCropCorner": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 1
+                },
+                "videoCropInverted": {
+                  "value": {
+                    "type": 0,
+                    "value": false
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoCropSoftness": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 1
+                },
+                "videoFitMode": {
+                  "value": {
+                    "type": 1,
+                    "value": 0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoFlipH": {
+                  "value": {
+                    "type": 0,
+                    "value": false
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoFlipV": {
+                  "value": {
+                    "type": 0,
+                    "value": false
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoONSize": {
+                  "value": {
+                    "type": 4,
+                    "value": [
+                      1920,
+                      1080
+                    ]
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoOrientation": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoRotation": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoScale": {
+                  "value": {
+                    "type": 14,
+                    "value": [
+                      1.0,
+                      1.0
+                    ]
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                },
+                "videoTransformRotation": {
+                  "value": {
+                    "type": 2,
+                    "value": 0.0
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 5
+                },
+                "videoTranslation": {
+                  "value": {
+                    "type": 13,
+                    "value": {
+                      "path": [
+                        {
+                          "interpolation": 0,
+                          "type": 0,
+                          "value": [
+                            0.33333334,
+                            0.33333334
+                          ]
+                        },
+                        {
+                          "interpolation": 0,
+                          "type": 1,
+                          "value": [
+                            0.6666667,
+                            0.6666667
+                          ]
+                        }
+                      ],
+                      "point": [
+                        0.0,
+                        0.0
+                      ]
+                    }
+                  },
+                  "identityValue": null,
+                  "keyframes": [],
+                  "conversionType": 0
+                }
+              },
+              "audioFormatID": "",
+              "effects": [],
+              "mediaType": 1,
+              "originalStepTime": {
+                "epoch": 0,
+                "flags": 1,
+                "timescale": 30000,
+                "value": 1001
+              },
+              "sourceSpeed": 1.0,
+              "sourceStart": {
+                "epoch": 0,
+                "flags": 1,
+                "timescale": 30000,
+                "value": 377010
+              },
+              "streamID": "x-coredata://D6993384-1F23-47EE-8962-3EFA1610DCCB/SpryStream/p1699842953"
+            }
+          ],
+          "subComp": null,
+          "title": "20261019_194920.mp4",
+          "trackDuration": {
+            "epoch": 0,
+            "flags": 1,
+            "timescale": 600,
+            "value": 760
+          },
+          "trackStart": {
+            "epoch": 0,
+            "flags": 1,
+            "timescale": 600,
+            "value": 6500
+          },
+          "transitionType": 0,
+          "useAudioTrackID": 1,
+          "useVideoTrackID": 0
+        }
+      ],
+      "colorTag": "",
+      "duration": {
+        "epoch": 0,
+        "flags": 1,
+        "timescale": 600,
+        "value": 8460
+      },
+      "editType": 0,
+      "flags": 0,
+      "hidden": false,
+      "isAnchorTrack": true,
+      "languageCode": "en",
+      "locked": false,
+      "stepTime": {
+        "epoch": 0,
+        "flags": 1,
+        "timescale": 600,
+        "value": 20
+      },
+      "title": "",
+      "trackID": "x-coredata://D6993384-1F23-47EE-8962-3EFA1610DCCB/SpryTrack/p819679048",
+      "trackOffset": 0,
+      "trackType": 0,
+      "trackVolume": 1.0,
+      "visualIndex": 3
+    },
+    {
+      "attributes": {
+        "notes": ""
+      },
+      "audioPitchAlgorithm": "Varispeed",
+      "clips": [],
+      "colorTag": "",
+      "duration": {
+        "epoch": 0,
+        "flags": 1,
+        "timescale": 600,
+        "value": 0
+      },
+      "editType": 1,
+      "flags": 0,
+      "hidden": false,
+      "isAnchorTrack": false,
+      "languageCode": "en",
+      "locked": false,
+      "stepTime": {
+        "epoch": 0,
+        "flags": 1,
+        "timescale": 600,
+        "value": 20
+      },
+      "title": "",
+      "trackID": "x-coredata://D6993384-1F23-47EE-8962-3EFA1610DCCB/SpryTrack/p1483393348",
+      "trackOffset": -1,
+      "trackType": 1,
+      "trackVolume": 1.0,
+      "visualIndex": 4
+    }
+  ],
+  "videoColorspace": 1
+}

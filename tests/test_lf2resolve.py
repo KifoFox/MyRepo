@@ -12,6 +12,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import lf2resolve  # noqa: E402
 
 FIXTURE = Path(__file__).parent / "fixtures" / "test_project.lfarchive"
+FIXTURE_EFFECTS = Path(__file__).parent / "fixtures" / "test_project_effects.lfarchive"
+MEDIA = [("20261019_194920.mp4", 14.85), ("20261019_212354.mp4", 5.087), ("20261019_215836.mp4", 4.69)]
 
 
 def fake_mp4(path, seconds, timescale=600):
@@ -28,8 +30,7 @@ class DecodeTest(unittest.TestCase):
         self.archive = json.loads(FIXTURE.read_text())
         self.tmp = tempfile.TemporaryDirectory()
         self.media = Path(self.tmp.name)
-        for name, secs in [("20261019_194920.mp4", 14.85), ("20261019_212354.mp4", 5.08),
-                           ("20261019_215836.mp4", 4.69)]:
+        for name, secs in MEDIA:
             fake_mp4(self.media / name, secs)
         self.project = lf2resolve.Decoder(self.archive, self.media).decode()
 
@@ -91,18 +92,60 @@ class DecodeTest(unittest.TestCase):
         self.assertEqual(len(described), 3)
 
 
-class WarningTest(unittest.TestCase):
-    def test_unsupported_features_are_reported(self):
-        archive = json.loads(FIXTURE.read_text())
-        clip = archive["tracks"][2]["clips"][0]
-        clip["streams"][0]["sourceSpeed"] = 2.0
-        clip["streams"][0]["effects"] = [{"identifier": "blur"}]
-        clip["streams"][0]["streamAttributes"]["videoScale"]["value"]["value"] = [1.5, 1.5]
-        with tempfile.TemporaryDirectory() as d:
-            warnings = lf2resolve.Decoder(archive, d).decode().warnings
-        text = "\n".join(warnings)
-        for needle in ("speed change", "effect(s)", "position/scale", "isn't in the package"):
-            self.assertIn(needle, text)
+class FeaturesTest(unittest.TestCase):
+    """Second sample: title, speed + reverse, keyframes, effects, crop/opacity."""
+
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        media = Path(self.tmp.name)
+        for name, secs in MEDIA:
+            fake_mp4(media / name, secs)
+        archive = json.loads(FIXTURE_EFFECTS.read_text())
+        self.project = lf2resolve.Decoder(archive, media).decode()
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def clip(self, title):
+        return next(i for t in self.project.tracks for i in t.items if i.title == title)
+
+    def test_speed_and_reverse(self):
+        it = self.clip("20261019_212354.mp4")
+        self.assertEqual(it.speed, Fraction(53, 50))
+        self.assertTrue(it.reversed)
+        src_in, src_out = it.file_range()
+        # Source covers timeline length x speed, mirrored from the reversed copy.
+        self.assertEqual(src_out - src_in, (it.end - it.start) * it.speed)
+        self.assertEqual(src_out, it.media.duration - it.src_in)
+
+    def test_title_becomes_marker(self):
+        (mk,) = self.project.markers
+        self.assertEqual(mk.name, "Title: Your Text Here")
+        self.assertEqual((mk.start, mk.end), (Fraction(4, 3), Fraction(16, 3)))
+        self.assertIn("#FFFF00", mk.comment)
+
+    def test_rebuild_notes(self):
+        notes = "; ".join(self.clip("20261019_215836.mp4").notes)
+        self.assertIn("Keyframed Scale, TransformRotation, Translation (4 keyframes)", notes)
+        main_b = self.project.tracks[-1].items[-1]
+        notes = "; ".join(main_b.notes)
+        for needle in ("Zoom 1.485", "Rotation 7.3°", "Crop to 82.9% x 67.2%", "Gaussian 10", "Person Key"):
+            self.assertIn(needle, notes)
+        self.assertAlmostEqual(main_b.opacity, 0.519)
+
+    def test_xml(self):
+        out = Path(self.tmp.name) / "out.xml"
+        lf2resolve.XmemlWriter(self.project).write(out)
+        seq = ET.parse(out).getroot().find("sequence")
+        remaps = [e for e in seq.iter("effect") if e.findtext("effectid") == "timeremap"]
+        self.assertEqual(len(remaps), 2)  # video + audio of the sped-up clip
+        params = {p.findtext("parameterid"): p.findtext("value") for p in remaps[0].iter("parameter")}
+        self.assertEqual((params["speed"], params["reverse"]), ("106", "TRUE"))
+        opacity = [e for e in seq.iter("effect") if e.findtext("effectid") == "opacity"]
+        self.assertEqual(opacity[0].findtext("parameter/value"), "51.9")
+        names = [m.findtext("name") for m in seq.findall("marker")]
+        self.assertEqual(names, ["Title: Your Text Here", "Rebuild: 20261019_215836.mp4",
+                                 "Rebuild: 20261019_194920.mp4"])
 
 
 class PackageTest(unittest.TestCase):
