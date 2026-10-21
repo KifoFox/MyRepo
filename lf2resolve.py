@@ -38,8 +38,79 @@ STREAM_AUDIO = 1
 STREAM_TITLE = 3
 TRACK_AUDIO_ONLY = 1
 
+# --------------------------------------------------------------------------
+# Transform conversion ASSUMPTIONS
+#
+# Neither app documents these conventions, and none of them has been checked
+# with the two apps side by side yet. If zoom, position, rotation, crop or
+# keyframe timing comes out wrong in Resolve, change the setting below.
+# --------------------------------------------------------------------------
+
+# LumaFusion zoom 1.0 = the clip fitted to the frame. FCP7 XML "scale" is a
+# percentage of the clip's native pixel size, so 1080p media in a UHD
+# timeline at LumaFusion zoom 1.0 is written as 200%. Set False to write the
+# LumaFusion zoom as-is (1.0 -> 100%).
+SCALE_RELATIVE_TO_NATIVE = True
+
+# LumaFusion position is the offset of the clip's centre from the frame
+# centre, as a fraction of the frame's width and height. True: +y is up
+# (Core Image style). FCP7 "center" uses the same fractions with +y down.
+LF_POSITION_Y_UP = True
+
+# LumaFusion rotation is in radians. True: positive = counter-clockwise.
+# FCP7 rotation is in degrees, positive = clockwise.
+LF_ROTATION_CCW = True
+
+# LumaFusion crop is [[x, y], [width, height]] of the part of the source
+# that stays visible, as fractions. True: y is measured from the bottom.
+LF_CROP_Y_UP = True
+
+# LumaFusion "videoFitMode" codes treated as "fill" (cover the frame);
+# every other code is treated as "fit" (letterbox). Only 0 has been seen.
+LF_FILL_MODES = {1}
+
+# FCP7 keyframe <when>: True = a frame number in the source media (the
+# clip's in point plus the offset); False = frames from the clip's start.
+KEYFRAME_WHEN_IS_SOURCE_FRAME = True
+
+
+def fcp_scale(lf_scale, fit):
+    return lf_scale * (fit if SCALE_RELATIVE_TO_NATIVE else 1) * 100
+
+
+def fcp_center(point):
+    x, y = (float(c) for c in point)
+    return (x, -y if LF_POSITION_Y_UP else y)
+
+
+def fcp_rotation(radians):
+    deg = math.degrees(radians)
+    return -deg if LF_ROTATION_CCW else deg
+
+
+def fcp_crop(rect):
+    """LumaFusion crop rect -> FCP7 crop (left, right, top, bottom) in percent."""
+    (x, y), (w, h) = ((float(a), float(b)) for a, b in rect)
+    low, high = y * 100, (1 - y - h) * 100
+    top, bottom = (high, low) if LF_CROP_Y_UP else (low, high)
+    clamp = lambda v: round(max(0.0, min(100.0, v)), 4)
+    return clamp(x * 100), clamp((1 - x - w) * 100), clamp(top), clamp(bottom)
+
+
+def fit_factor(media_w, media_h, frame_w, frame_h, fit_mode):
+    if not media_w or not media_h:
+        return 1.0
+    sx, sy = frame_w / media_w, frame_h / media_h
+    return max(sx, sy) if fit_mode in LF_FILL_MODES else min(sx, sy)
+
+
 IMAGE_EXTS = {".jpg", ".jpeg", ".png", ".heic", ".heif", ".tif", ".tiff", ".bmp", ".gif", ".webp"}
 AUDIO_EXTS = {".m4a", ".mp3", ".wav", ".aif", ".aiff", ".caf", ".aac", ".flac"}
+
+
+# Attributes converted into FCP7 filters (anything else keyframed gets a marker).
+HANDLED_ATTRS = {"videoScale", "videoTransformRotation", "videoRotation", "videoTranslation",
+                 "videoCrop", "videoAlpha", "audioVolume", "audioPan"}
 
 
 def cmtime(t):
@@ -188,6 +259,8 @@ class Item:
     speed: Fraction = Fraction(1)
     reversed: bool = False
     notes: list = field(default_factory=list)  # things to rebuild by hand
+    lf_start: Fraction = Fraction(0)  # LumaFusion's start; keyframes count from here
+    anim: dict = field(default_factory=dict)  # property -> Anim, in FCP7 units
 
     def src_len(self, timeline_len):
         return timeline_len * self.speed
@@ -206,6 +279,17 @@ class Item:
             d = self.media.duration
             return d - self.src_out, d - self.src_in
         return self.src_in, self.src_out
+
+
+@dataclass
+class Anim:
+    """A clip property: its static value, keyframes and whether it was changed.
+
+    Keyframe times are seconds from the clip's LumaFusion start (Item.lf_start).
+    """
+    value: object
+    keys: list
+    changed: bool
 
 
 @dataclass
@@ -262,6 +346,8 @@ class Decoder:
         self.warnings = []
         self.markers = []
         self.rate = Rate.from_step(archive.get("stepTime"))
+        res = archive.get("resolution") or [1920, 1080]
+        self.width, self.height = int(res[0]), int(res[1])
 
     def warn(self, msg):
         if msg not in self.warnings:
@@ -313,9 +399,8 @@ class Decoder:
                 trans_idx.append(len(track.items))
                 track.items.append(c)  # resolved below
                 continue
-            item = self.item(c)
+            item = self.item(c, track_volume)
             if item is not None:
-                item.volume *= track_volume
                 if not audio_only and item.has_audio is False and item.has_video is False:
                     continue
                 track.items.append(item)
@@ -370,7 +455,7 @@ class Decoder:
         self.media[name] = m
         return m
 
-    def item(self, c):
+    def item(self, c, track_volume=1.0):
         title = c.get("title") or c.get("attributes", {}).get("title") or "clip"
         start = cmtime(c.get("trackStart"))
         end = start + cmtime(c.get("trackDuration"))
@@ -404,16 +489,22 @@ class Decoder:
         if reversed_ and media.duration is None:
             self.warn(f"{where}: reversed clip but media length unknown; source range may be wrong.")
 
-        notes = []
+        anim = {}
         if v:
-            notes += self.look_notes(v)
+            anim.update(self.video_anim(v, media))
+        if au:
+            anim["volume"] = self.anim(au, "audioVolume", 1.0, lambda g: float(g) * track_volume)
+            anim["volume"].changed |= abs(track_volume - 1) > 1e-4
+            anim["pan"] = self.anim(au, "audioPan", 0.0, float)
+
+        notes = self.look_notes(v) if v else []
         for s in streams:
             for e in s.get("effects") or []:
                 notes.append("Effect: " + self.effect_desc(e))
-        if au and has_keyframes(au, "audioVolume"):
-            notes.append("Volume keyframes (static level used)")
-        if au and has_keyframes(au, "audioPan"):
-            notes.append("Pan keyframes (static pan used)")
+            handled = HANDLED_ATTRS | {"speed"}
+            kf = sorted(k for k, a in s.get("streamAttributes", {}).items() if a.get("keyframes") and k not in handled)
+            if kf:
+                notes.append(f"Keyframed {', '.join(kf)}")
         if notes:
             self.warn(f"{where}: {'; '.join(notes)}. Added as a timeline marker to rebuild.")
 
@@ -425,13 +516,49 @@ class Decoder:
             src_in=cmtime(src.get("sourceStart")),
             has_video=v is not None and media.kind != "audio",
             has_audio=au is not None,
-            volume=float(attr(au, "audioVolume", 1.0)) if au else 1.0,
-            pan=float(attr(au, "audioPan", 0.0)) if au else 0.0,
-            opacity=float(attr(v, "videoAlpha", 1.0)) if v else 1.0,
+            volume=anim["volume"].value if au else 1.0,
+            pan=anim["pan"].value if au else 0.0,
+            opacity=anim["opacity"].value / 100 if v else 1.0,
             speed=speed,
             reversed=reversed_,
             notes=notes,
+            lf_start=start,
+            anim=anim,
         )
+
+    @staticmethod
+    def anim(stream, name, default, conv, get=lambda v: v):
+        """Read a LumaFusion attribute (static value + keyframes) into an Anim."""
+        a = stream.get("streamAttributes", {}).get(name) or {}
+        raw = get((a.get("value") or {}).get("value", default))
+        keys = [(cmtime(k.get("clipTime")), get((k.get("value") or {}).get("value")))
+                for k in a.get("keyframes") or []]
+        keys = [(t, conv(val)) for t, val in keys if val is not None]
+        changed = bool(keys) or raw != default
+        return Anim(conv(raw if raw is not None else default), keys, changed)
+
+    def video_anim(self, v, media):
+        size = attr(v, "videoONSize") or [0, 0]
+        mw, mh = (size if size and size[0] else [media.width, media.height])
+        fit = fit_factor(mw, mh, self.width, self.height, attr(v, "videoFitMode", 0))
+        point = lambda t: (t or {}).get("point", [0.0, 0.0]) if isinstance(t, dict) else [0.0, 0.0]
+        uniform = lambda sc: float((sc or [1.0])[0])
+        base_rot = float(attr(v, "videoRotation", 0.0) or 0)
+        anim = {
+            "scale": self.anim(v, "videoScale", 1.0, lambda s: fcp_scale(s, fit), uniform),
+            "rotation": self.anim(v, "videoTransformRotation", 0.0,
+                                  lambda r: fcp_rotation(float(r) + base_rot), lambda r: float(r or 0)),
+            "center": self.anim(v, "videoTranslation", (0.0, 0.0), fcp_center,
+                                lambda t: tuple(float(c) for c in point(t))),
+            "crop": self.anim(v, "videoCrop", ((0.0, 0.0), (1.0, 1.0)), fcp_crop,
+                              lambda r: tuple(tuple(float(c) for c in p) for p in (r or [[0, 0], [1, 1]]))),
+            "opacity": self.anim(v, "videoAlpha", 1.0, lambda a: float(a) * 100, float),
+        }
+        anim["rotation"].changed |= abs(base_rot) > 1e-6
+        # Rotation of exactly -0.0 is still "unchanged".
+        if not anim["rotation"].keys and abs(anim["rotation"].value) < 1e-6 and not base_rot:
+            anim["rotation"].changed = False
+        return anim
 
     def title_marker(self, c, title, start, end):
         rt = c.get("runtimeTitle") or {}
@@ -457,34 +584,19 @@ class Decoder:
 
     @staticmethod
     def look_notes(v):
-        """Describe non-default transform / crop settings on a video stream."""
+        """Describe video settings that have no FCP7 XML equivalent."""
         notes = []
         scale = attr(v, "videoScale", [1.0, 1.0]) or [1.0, 1.0]
-        if any(abs(float(x) - 1) > 1e-4 for x in scale):
-            sx, sy = (float(x) for x in scale)
-            notes.append(f"Zoom {sx:.3f}" if abs(sx - sy) < 1e-4 else f"Zoom X {sx:.3f} Y {sy:.3f}")
-        tr = attr(v, "videoTranslation", {})
-        point = tr.get("point", [0, 0]) if isinstance(tr, dict) else [0, 0]
-        if any(abs(float(x)) > 1e-4 for x in point):
-            notes.append(f"Position offset {float(point[0]) * 100:+.1f}% / {float(point[1]) * 100:+.1f}% of frame")
-        rot = float(attr(v, "videoTransformRotation", 0.0) or 0) + float(attr(v, "videoRotation", 0.0) or 0)
-        if abs(rot) > 1e-4:
-            notes.append(f"Rotation {math.degrees(rot):.1f}°")
-        crop = attr(v, "videoCrop", [[0, 0], [1, 1]])
-        if crop and [[float(a) for a in p] for p in crop] != [[0.0, 0.0], [1.0, 1.0]]:
-            (x, y), (w, h) = crop
-            notes.append(f"Crop to {float(w) * 100:.1f}% x {float(h) * 100:.1f}% at {float(x) * 100:.1f}%, {float(y) * 100:.1f}%")
+        if abs(float(scale[0]) - float(scale[-1])) > 1e-4:
+            notes.append(f"Non-uniform zoom X {float(scale[0]):.3f} Y {float(scale[-1]):.3f} (X used for both)")
         if attr(v, "videoFlipH", False):
             notes.append("Flip horizontal")
         if attr(v, "videoFlipV", False):
             notes.append("Flip vertical")
         if attr(v, "videoBlendMode", 0):
             notes.append(f"Blend mode #{attr(v, 'videoBlendMode', 0)}")
-        kf = sorted(k[5:] if k.startswith("video") else k
-                    for k, a in v.get("streamAttributes", {}).items() if a.get("keyframes") and k != "speed")
-        if kf:
-            n = max(len(a["keyframes"]) for a in v["streamAttributes"].values() if a.get("keyframes"))
-            notes.append(f"Keyframed {', '.join(kf)} ({n} keyframes)")
+        if float(attr(v, "videoCropCorner", 0.0) or 0) or float(attr(v, "videoCropSoftness", 0.0) or 0):
+            notes.append("Crop corner rounding / softness")
         return notes
 
     @staticmethod
@@ -552,6 +664,16 @@ def path_url(path):
     if not p.startswith("/"):
         p = "/" + p  # Windows drive path
     return "file://localhost" + quote(p, safe="/:")
+
+
+def param_value(parent, value):
+    v = ET.SubElement(parent, "value")
+    if isinstance(value, tuple):  # a point
+        ET.SubElement(v, "horiz").text = f"{value[0] + 0.0:.6g}"  # + 0.0 turns -0.0 into 0
+        ET.SubElement(v, "vert").text = f"{value[1] + 0.0:.6g}"
+    else:
+        v.text = f"{value + 0.0:.6g}"
+    return v
 
 
 def transition_effect(mediatype):
@@ -699,15 +821,8 @@ class XmemlWriter:
             st = ET.SubElement(el, "sourcetrack")
             ET.SubElement(st, "mediatype").text = "audio"
             ET.SubElement(st, "trackindex").text = "1"
-            if abs(it.volume - 1.0) > 1e-4:
-                el.append(self.filter("Audio Levels", "audiolevels", "audiolevels", "audio",
-                                      "level", "Level", it.volume, 0, 3.98109))
-            if abs(it.pan) > 1e-4:
-                el.append(self.filter("Audio Pan", "audiopan", "audiopan", "audio",
-                                      "pan", "Pan", it.pan, -1, 1))
-        elif abs(it.opacity - 1.0) > 1e-4:
-            el.append(self.filter("Opacity", "opacity", "motion", "video",
-                                  "opacity", "opacity", round(it.opacity * 100, 2), 0, 100))
+        for f in self.filters(it, kind):
+            el.append(f)
         for k in ("video", "audio"):
             ref = self.ids.get((id(it), k))
             if ref and (it.has_video and it.has_audio):
@@ -742,21 +857,71 @@ class XmemlWriter:
         ET.SubElement(el, "out").text = str(self.rate.frames(mk.end))
         return el
 
+    def filters(self, it, kind):
+        """FCP7 filters for a clip's animatable properties (only changed ones)."""
+        anim = it.anim
+        when = lambda t: self.keyframe_when(it, t)
+        changed = lambda *names: any(n in anim and anim[n].changed for n in names)
+
+        def param(pid, name, vmin, vmax, a, pick=lambda v: v):
+            keys = [(when(t), pick(v)) for t, v in a.keys]
+            return pid, name, vmin, vmax, pick(a.value), keys
+
+        out = []
+        if kind == "audio":
+            if changed("volume"):
+                out.append(self.filter("Audio Levels", "audiolevels", "audiolevels", "audiolevels", "audio",
+                                       [param("level", "Level", 0, 3.98109, anim["volume"])]))
+            if changed("pan"):
+                out.append(self.filter("Audio Pan", "audiopan", "audiopan", "audiopan", "audio",
+                                       [param("pan", "Pan", -1, 1, anim["pan"])]))
+            return out
+        if changed("scale", "rotation", "center"):
+            out.append(self.filter("Basic Motion", "basic", "motion", "motion", "video", [
+                param("scale", "Scale", 0, 1000, anim["scale"]),
+                param("rotation", "Rotation", -8640, 8640, anim["rotation"]),
+                param("center", "Center", None, None, anim["center"]),
+            ]))
+        if changed("crop"):
+            out.append(self.filter("Crop", "crop", "motion", "motion", "video", [
+                param(side, side, 0, 100, anim["crop"], lambda v, i=i: v[i])
+                for i, side in enumerate(("left", "right", "top", "bottom"))
+            ]))
+        if changed("opacity"):
+            out.append(self.filter("Opacity", "opacity", "motion", "motion", "video",
+                                   [param("opacity", "opacity", 0, 100, anim["opacity"])]))
+        return out
+
+    def keyframe_when(self, it, t):
+        """Frame number for a keyframe t seconds after the clip's LumaFusion start."""
+        offset = it.lf_start + t - it.start  # transitions may have moved the start
+        if not KEYFRAME_WHEN_IS_SOURCE_FRAME:
+            return self.rate.frames(offset)
+        src_in, src_out = it.file_range()
+        src = src_out - offset * it.speed if it.reversed else src_in + offset * it.speed
+        return it.media.rate.frames(src)
+
     @staticmethod
-    def filter(name, effectid, category, mediatype, pid, pname, value, vmin, vmax):
+    def filter(name, effectid, category, effecttype, mediatype, params):
         f = ET.Element("filter")
         eff = ET.SubElement(f, "effect")
         ET.SubElement(eff, "name").text = name
         ET.SubElement(eff, "effectid").text = effectid
         ET.SubElement(eff, "effectcategory").text = category
-        ET.SubElement(eff, "effecttype").text = "filter"
+        ET.SubElement(eff, "effecttype").text = effecttype
         ET.SubElement(eff, "mediatype").text = mediatype
-        p = ET.SubElement(eff, "parameter")
-        ET.SubElement(p, "parameterid").text = pid
-        ET.SubElement(p, "name").text = pname
-        ET.SubElement(p, "valuemin").text = str(vmin)
-        ET.SubElement(p, "valuemax").text = str(vmax)
-        ET.SubElement(p, "value").text = f"{value:.6g}"
+        for pid, pname, vmin, vmax, value, keys in params:
+            p = ET.SubElement(eff, "parameter")
+            ET.SubElement(p, "parameterid").text = pid
+            ET.SubElement(p, "name").text = pname
+            if vmin is not None:
+                ET.SubElement(p, "valuemin").text = str(vmin)
+                ET.SubElement(p, "valuemax").text = str(vmax)
+            param_value(p, value)
+            for frame, kv in keys:
+                k = ET.SubElement(p, "keyframe")
+                ET.SubElement(k, "when").text = str(frame)
+                param_value(k, kv)
         return f
 
     def file(self, m):

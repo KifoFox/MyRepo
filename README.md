@@ -52,16 +52,18 @@ Use `-o FOLDER` to choose the output location.
 | Audio-only tracks                 | Additional audio tracks                   |
 | Clip position, trims, gaps        | Exact (to the frame)                      |
 | Transitions                       | Cross Dissolve + audio cross fade         |
-| Clip volume / pan                 | Clip volume / pan                         |
-| Clip opacity                      | Opacity                                   |
+| Clip volume / pan (+ keyframes)   | Clip volume / pan (+ keyframes)           |
+| Opacity (+ keyframes)             | Opacity (+ keyframes)                     |
+| Zoom, position, rotation (+ keyframes) | Zoom, position, rotation (+ keyframes) — see assumptions |
+| Crop (+ keyframes)                | Crop (+ keyframes) — see assumptions      |
 | Speed changes, reversed clips     | Retime (constant speed) / reverse         |
 | Hidden / locked tracks            | Disabled / locked tracks                  |
 | Titles                            | Timeline marker with the text, font, colour |
-| Effects, position/zoom/rotation, crop, keyframes | Timeline marker listing the settings |
+| Effects, flips, blend modes, crop rounding | Timeline marker listing the settings |
 
 Anything that can't be converted directly is left as a **timeline marker**
-over the clip, such as "Rebuild: clip.mp4 — Zoom 1.485; Rotation 7.3°; Effect:
-Gaussian blur...". Use it as a to-do list in Resolve. The tool also prints
+over the clip, such as "Rebuild: clip.mp4 — Effect: Gaussian 10 [CIGaussianBlur]
+Radius 1". Use it as a to-do list in Resolve. The tool also prints
 the same list when it runs.
 
 Every LumaFusion transition style (Zoom Blur, Push, etc.) becomes a cross
@@ -72,6 +74,23 @@ with each clip lending half the duration from its handles.
 LumaFusion plays a reversed clip from a reversed copy of the media, and that
 copy isn't included in the package. The tool maps the clip back onto the
 original file and lets Resolve reverse it.
+
+## Transform assumptions
+
+Neither app documents how it stores zoom, position, rotation and crop, so the
+conversion rests on assumptions that haven't been checked with both apps side by
+side yet. They're all in one block at the top of `lf2resolve.py`
+("Transform conversion ASSUMPTIONS"), so if something looks wrong in Resolve,
+flip the matching setting:
+
+| Setting | Assumption | Symptom if wrong |
+|---------|------------|------------------|
+| `SCALE_RELATIVE_TO_NATIVE` | LumaFusion zoom 1.0 = fit to frame; written as % of the media's native size (1080p in a 4K timeline → 200%) | Zoomed clips are twice / half the size they should be |
+| `LF_POSITION_Y_UP` | Position is a fraction of the frame from centre, +y up | Clips move down instead of up |
+| `LF_ROTATION_CCW` | Rotation is in radians, positive = counter-clockwise | Clips rotate the wrong way |
+| `LF_CROP_Y_UP` | Crop is the visible rectangle as fractions, y measured from the bottom | Top and bottom crop are swapped |
+| `LF_FILL_MODES` | Fit mode 0 = fit (letterbox) | Wrong zoom on clips set to "fill" |
+| `KEYFRAME_WHEN_IS_SOURCE_FRAME` | Keyframe times are written as source-media frame numbers | Animations start early or late |
 
 ## Limitations
 

@@ -1,4 +1,5 @@
 import json
+import math
 import struct
 import sys
 import tempfile
@@ -124,28 +125,63 @@ class FeaturesTest(unittest.TestCase):
         self.assertEqual((mk.start, mk.end), (Fraction(4, 3), Fraction(16, 3)))
         self.assertIn("#FFFF00", mk.comment)
 
-    def test_rebuild_notes(self):
-        notes = "; ".join(self.clip("20261019_215836.mp4").notes)
-        self.assertIn("Keyframed Scale, TransformRotation, Translation (4 keyframes)", notes)
-        main_b = self.project.tracks[-1].items[-1]
-        notes = "; ".join(main_b.notes)
-        for needle in ("Zoom 1.485", "Rotation 7.3°", "Crop to 82.9% x 67.2%", "Gaussian 10", "Person Key"):
+    def test_rebuild_notes_only_for_unconvertible_settings(self):
+        self.assertEqual(self.clip("20261019_215836.mp4").notes, [])
+        notes = "; ".join(self.project.tracks[-1].items[-1].notes)
+        for needle in ("Crop corner", "Gaussian 10", "Person Key"):
             self.assertIn(needle, notes)
-        self.assertAlmostEqual(main_b.opacity, 0.519)
+        for converted in ("Zoom", "Rotation", "Crop to"):
+            self.assertNotIn(converted, notes)
+
+    def test_static_transform(self):
+        a = self.project.tracks[-1].items[-1].anim
+        # 1080p media in a UHD frame: LumaFusion zoom 1.485 = 297% of native size.
+        self.assertAlmostEqual(a["scale"].value, 297, places=3)
+        self.assertAlmostEqual(a["rotation"].value, -7.2785, places=3)
+        self.assertEqual(a["center"].value, (0.379, -0.468))
+        self.assertEqual(a["crop"].value, (7.0, 10.1, 20.3, 12.5))
+        self.assertAlmostEqual(a["opacity"].value, 51.9, places=4)
+
+    def test_keyframes(self):
+        it = self.clip("20261019_215836.mp4")
+        scale = it.anim["scale"]
+        self.assertEqual([t for t, _ in scale.keys],
+                         [Fraction(12000, 30000), Fraction(31020, 30000), Fraction(55050, 30000), Fraction(94080, 30000)])
+        self.assertAlmostEqual(scale.keys[1][1], 200)
+        self.assertEqual(it.anim["center"].keys[2][1], (0.69, -0.0))
+        # The Zoom Blur transition moved the clip 0.5s earlier, so keyframes
+        # shift 0.5s later relative to the Resolve clip.
+        writer = lf2resolve.XmemlWriter(self.project)
+        self.assertEqual([writer.keyframe_when(it, t) for t, _ in scale.keys], [27, 46, 70, 109])
 
     def test_xml(self):
         out = Path(self.tmp.name) / "out.xml"
         lf2resolve.XmemlWriter(self.project).write(out)
         seq = ET.parse(out).getroot().find("sequence")
-        remaps = [e for e in seq.iter("effect") if e.findtext("effectid") == "timeremap"]
+        effects = lambda eid: [e for e in seq.iter("effect") if e.findtext("effectid") == eid]
+        remaps = effects("timeremap")
         self.assertEqual(len(remaps), 2)  # video + audio of the sped-up clip
         params = {p.findtext("parameterid"): p.findtext("value") for p in remaps[0].iter("parameter")}
         self.assertEqual((params["speed"], params["reverse"]), ("106", "TRUE"))
-        opacity = [e for e in seq.iter("effect") if e.findtext("effectid") == "opacity"]
-        self.assertEqual(opacity[0].findtext("parameter/value"), "51.9")
+        self.assertEqual(effects("opacity")[0].findtext("parameter/value"), "51.9")
+        self.assertEqual(len(effects("basic")), 2)
+        crop = {p.findtext("parameterid"): p.findtext("value") for p in effects("crop")[0].iter("parameter")}
+        self.assertEqual(crop, {"left": "7", "right": "10.1", "top": "20.3", "bottom": "12.5"})
+        keyed = [p for p in effects("basic")[1].iter("parameter") if p.findtext("parameterid") == "center"][0]
+        self.assertEqual([(k.findtext("when"), k.findtext("value/horiz")) for k in keyed.findall("keyframe")],
+                         [("27", "0.029601"), ("46", "0.029601"), ("70", "0.69"), ("109", "0.0396481")])
         names = [m.findtext("name") for m in seq.findall("marker")]
-        self.assertEqual(names, ["Title: Your Text Here", "Rebuild: 20261019_215836.mp4",
-                                 "Rebuild: 20261019_194920.mp4"])
+        self.assertEqual(names, ["Title: Your Text Here", "Rebuild: 20261019_194920.mp4"])
+
+
+class AssumptionTest(unittest.TestCase):
+    def test_conversions(self):
+        self.assertEqual(lf2resolve.fit_factor(1920, 1080, 3840, 2160, 0), 2)
+        self.assertEqual(lf2resolve.fit_factor(1080, 1920, 3840, 2160, 0), 1.125)
+        self.assertEqual(lf2resolve.fcp_scale(1.0, 2), 200)
+        self.assertEqual(lf2resolve.fcp_center([0.25, 0.1]), (0.25, -0.1))
+        self.assertAlmostEqual(lf2resolve.fcp_rotation(math.pi / 2), -90)
+        self.assertEqual(lf2resolve.fcp_crop([[0.1, 0.2], [0.5, 0.6]]), (10.0, 40.0, 20.0, 20.0))
 
 
 class PackageTest(unittest.TestCase):
